@@ -31,7 +31,7 @@
 
 
 ;; Projectile
-(projectile-global-mode)
+(projectile-mode)
 
 
 ;; Rtags
