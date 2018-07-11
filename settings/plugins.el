@@ -64,14 +64,13 @@
 ;; company mode
 (add-hook 'after-init-hook 'global-company-mode)
 
-;; irony
+;; Автодополнение rtags
+(setq rtags-autostart-diagnostics t)
+(setq rtags-completions-enabled t)
 (eval-after-load 'company
-  '(add-to-list 'company-backends 'company-irony))
-(eval-after-load 'flycheck
-  '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
-
-;; flycheck
-;; (add-hook 'after-init-hook #'global-flycheck-mode)
+  '(add-to-list 'company-backends 'company-rtags))
+;;(push 'company-rtags company-backends)
+(define-key c-mode-base-map (kbd "<C-tab>") (function company-complete))
 
 
 (provide 'plugins)
