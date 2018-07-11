@@ -29,6 +29,11 @@
 (projectile-mode)
 
 
+;; magit
+(global-unset-key [f1])
+(global-set-key [f1] 'magit-status)
+
+
 ;; Rtags
 (require 'rtags)
 (defun rtags-keybindings ()
@@ -46,30 +51,20 @@
 (add-hook 'c-mode-hook 'rtags-keybindings)
 (setq rtags-display-result-backend 'helm)
 
-;;(defun my-flycheck-rtags-setup ()
-;;  (flycheck-select-checker 'rtags)
-;;  (setq-local flycheck-highlighting-mode nil) ;; RTags creates more accurate overlays.
-;;  (setq-local flycheck-check-syntax-automatically nil))
-;;(add-hook 'c-mode-hook #'my-flycheck-rtags-setup)
-;; (add-hook 'c++-mode-hook #'my-flycheck-rtags-setup)
+;; Автодополнение rtags
+(setq rtags-autostart-diagnostics t)
+(setq rtags-completions-enabled t)
+
 
 ;; cmake ide
 (require 'cmake-ide)
 (cmake-ide-setup)
 
-;; magit
-(global-unset-key [f1])
-(global-set-key [f1] 'magit-status)
 
 ;; company mode
 (add-hook 'after-init-hook 'global-company-mode)
-
-;; Автодополнение rtags
-(setq rtags-autostart-diagnostics t)
-(setq rtags-completions-enabled t)
 (eval-after-load 'company
   '(add-to-list 'company-backends 'company-rtags))
-;;(push 'company-rtags company-backends)
 (define-key c-mode-base-map (kbd "<C-tab>") (function company-complete))
 
 
