@@ -1,8 +1,3 @@
-;; Semantic
-(semantic-mode t) ;; Включение semantic
-;;(global-semantic-idle-summary-mode t) ;; Пока типа переменной в буфере внизу
-(global-semantic-stickyfunc-mode t) ;; показ функции в буфере наверху
-
 
 ;; Speedbar
 (setq sr-speedbar-right-side nil)
