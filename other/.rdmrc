@@ -1,0 +1,4 @@
+--exclude-filter *thirdparty*
+--exclude-filter *boost*
+--exclude-filter *engine3d*
+--exclude-filter *software*
