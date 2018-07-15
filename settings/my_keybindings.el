@@ -16,5 +16,7 @@
 
 (global-set-key (kbd "<f6>") 'recompile)
 
+(global-set-key (kbd "C-=") 'my-mark-current-word)
+
 (provide 'my_keybindings)
 

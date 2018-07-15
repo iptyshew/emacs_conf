@@ -103,5 +103,6 @@
 (setq max-lisp-eval-depth 100000)
 (setq max-specpdl-size 100000)
 
+(global-superword-mode)
 
 (provide 'custom_pref)
