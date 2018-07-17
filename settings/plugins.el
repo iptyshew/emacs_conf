@@ -20,13 +20,15 @@
 (global-set-key (kbd "<f2>") 'helm-buffers-list)
 (global-set-key (kbd "M-s o") 'helm-occur)
 
-(global-set-key (kbd "C-x p h") 'helm-projectile)
-(global-set-key (kbd "C-x p f") 'helm-projectile-find-file)
-(global-set-key (kbd "C-x p g") 'helm-projectile-grep)
-
 
 ;; Projectile
 (projectile-mode)
+(setq projectile-enable-caching t)
+
+(global-set-key (kbd "C-x p p") 'helm-projectile-switch-project)
+(global-set-key (kbd "C-x p h") 'helm-projectile)
+(global-set-key (kbd "C-x p f") 'helm-projectile-find-file)
+(global-set-key (kbd "C-x p g") 'helm-projectile-grep)
 
 
 ;; magit
@@ -66,6 +68,8 @@
 (eval-after-load 'company
   '(add-to-list 'company-backends 'company-rtags))
 (define-key c-mode-base-map (kbd "<C-tab>") (function company-complete))
+
+
 
 
 (provide 'plugins)
