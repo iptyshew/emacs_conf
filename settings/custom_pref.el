@@ -103,6 +103,18 @@
 (setq max-lisp-eval-depth 100000)
 (setq max-specpdl-size 100000)
 
+
+;; Переход по словам целиком
 (global-superword-mode)
+
+
+;; Подтягивание переменных окружения в emacs
+(let ((path (shell-command-to-string ". ~/.bashrc; echo -n $PATH")))
+  (setenv "PATH" path)
+  (setq exec-path
+        (append
+         (split-string-and-unquote path ":")
+         exec-path)))
+
 
 (provide 'custom_pref)
