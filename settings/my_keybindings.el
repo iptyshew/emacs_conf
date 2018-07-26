@@ -4,6 +4,7 @@
 (global-unset-key (kbd "C-z")) ;; Мешает работе
 (global-unset-key (kbd "C-x m")) ;; Мешает работе
 (global-unset-key (kbd "C-x C-c")) ;; Мешает работе
+(global-unset-key (kbd "C-x C-p")) ;; Мешает работе
 (global-set-key (kbd "<backspace>") 'ignore) ;; Ибо нефиг
 
 (global-set-key (kbd "C-h") 'backward-delete-char-untabify)

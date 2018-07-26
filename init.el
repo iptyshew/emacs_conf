@@ -39,6 +39,8 @@
 
 
 (require 'custom_pref)
-(require 'plugins)
-(require 'package)
 (require 'my_keybindings)
+(require 'package)
+(require 'plugins)
+
+

@@ -26,9 +26,13 @@
 (setq projectile-enable-caching t)
 
 (global-set-key (kbd "C-x p p") 'helm-projectile-switch-project)
+(global-set-key (kbd "C-x C-p p") 'helm-projectile-switch-project)
 (global-set-key (kbd "C-x p h") 'helm-projectile)
+(global-set-key (kbd "C-x C-p h") 'helm-projectile)
 (global-set-key (kbd "C-x p f") 'helm-projectile-find-file)
+(global-set-key (kbd "C-x C-p f") 'helm-projectile-find-file)
 (global-set-key (kbd "C-x p g") 'helm-projectile-grep)
+(global-set-key (kbd "C-x C-p g") 'helm-projectile-grep)
 
 
 ;; magit
