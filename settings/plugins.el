@@ -73,7 +73,8 @@
   '(add-to-list 'company-backends 'company-rtags))
 (define-key c-mode-base-map (kbd "<C-tab>") (function company-complete))
 
-
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
 
 
 (provide 'plugins)
