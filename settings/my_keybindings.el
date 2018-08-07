@@ -15,8 +15,6 @@
           (lambda ()
             (define-key ido-completion-map (kbd "C-w") 'ido-delete-backward-word-updir)))
 
-(global-set-key (kbd "<f6>") 'recompile)
-
 (global-set-key (kbd "C-=") 'my-mark-current-word)
 
 ;;mac os only

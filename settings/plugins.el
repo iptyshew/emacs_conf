@@ -73,8 +73,24 @@
   '(add-to-list 'company-backends 'company-rtags))
 (define-key c-mode-base-map (kbd "<C-tab>") (function company-complete))
 
+
+;; Mac os only. Подхватывание переменных окружения
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
+
+
+;; Команды для режима мульти-компиляции
+(setq multi-compile-alist '(
+		(c++-mode . (("gen-cmake" "(cd .. && bash build.sh)" (locate-dominating-file buffer-file-name ".git"))
+					 ("build" "(cd ../out/Debug && ninja)" (locate-dominating-file buffer-file-name ".git"))))))
+
+(setq multi-compile-completion-system 'helm)
+
+(defun multi-compile-keybindings ()
+  (local-set-key (kbd "<f5>") 'multi-compile-run))
+
+(add-hook 'c++-mode-hook 'multi-compile-keybindings)
+(add-hook 'c-mode-hook 'multi-compile-keybindings)
 
 
 (provide 'plugins)
