@@ -78,6 +78,15 @@
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
 
+(defun source-file-and-get-envs (filename)
+  (let* ((cmd (concat ". " filename "; env"))
+         (env-str (shell-command-to-string cmd))
+         (env-lines (split-string env-str "\n"))
+         (envs (mapcar (lambda (s) (replace-regexp-in-string "=.*$" "" s)) env-lines)))
+    (delete "" envs)))
+
+(exec-path-from-shell-copy-envs (source-file-and-get-envs "~/.profile"))
+
 
 ;; Команды для режима мульти-компиляции
 (setq multi-compile-alist '(
