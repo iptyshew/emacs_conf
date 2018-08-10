@@ -73,6 +73,17 @@
   '(add-to-list 'company-backends 'company-rtags))
 (define-key c-mode-base-map (kbd "<C-tab>") (function company-complete))
 
+(with-eval-after-load 'company
+  (define-key company-active-map (kbd "M-n") nil)
+  (define-key company-active-map (kbd "M-p") nil)
+  (define-key company-active-map (kbd "C-h") nil)
+  (define-key company-active-map (kbd "C-n") #'company-select-next)
+  (define-key company-active-map (kbd "C-p") #'company-select-previous))
+
+(with-eval-after-load 'company
+  (define-key company-active-map (kbd "C-n") (lambda () (interactive) (company-complete-common-or-cycle 1)))
+  (define-key company-active-map (kbd "C-p") (lambda () (interactive) (company-complete-common-or-cycle -1))))
+
 
 ;; Mac os only. Подхватывание переменных окружения
 (when (memq window-system '(mac ns x))
