@@ -102,4 +102,13 @@
 (add-hook 'c-mode-hook 'multi-compile-keybindings)
 
 
+;; clang format
+(require 'clang-format)
+(global-set-key (kbd "C-c i") 'clang-format-region)
+(global-set-key (kbd "C-c u") 'clang-format-buffer)
+
+;; todo сделать хук с клавишами
+;;(add-hook 'c++-mode-hook 'clang-format-keybindings)
+;;(add-hook 'c-mode-hook 'clang-format-keybindings)
+
 (provide 'plugins)
