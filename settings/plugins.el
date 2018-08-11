@@ -40,38 +40,19 @@
 (global-set-key [f1] 'magit-status)
 
 
-;; Rtags
-(require 'rtags)
-(defun rtags-keybindings ()
-  (local-unset-key (kbd "C-."))
-  (local-unset-key (kbd "C-;"))
-  (local-set-key (kbd "C-.") 'rtags-find-symbol-at-point)
-  (local-set-key (kbd "M-;") 'rtags-find-references-at-point)
-  (local-set-key (kbd "C-8") 'rtags-location-stack-back)
-  (local-set-key (kbd "M-n") 'rtags-next-match)
-  (local-set-key (kbd "M-p") 'rtags-previous-match)
-  (local-set-key (kbd "<f4>") 'rtags-taglist)
-  )
-
-(add-hook 'c++-mode-hook 'rtags-keybindings)
-(add-hook 'c-mode-hook 'rtags-keybindings)
-(setq rtags-display-result-backend 'helm)
-
-;; Автодополнение rtags
-(setq rtags-autostart-diagnostics t)
-(setq rtags-completions-enabled t)
-
-
 ;; cmake ide
 (require 'cmake-ide)
 (cmake-ide-setup)
 
-
 ;; company mode
 (add-hook 'after-init-hook 'global-company-mode)
 (eval-after-load 'company
-  '(add-to-list 'company-backends 'company-rtags))
-(define-key c-mode-base-map (kbd "<C-tab>") (function company-complete))
+  '(add-to-list 'company-backends 'company-lsp))
+
+(setq company-transformers nil company-lsp-async t company-lsp-cache-candidates nil)
+(setq company-lsp-enable-snippet nil)
+(setq company-dabbrev-downcase 0)
+(setq company-idle-delay 0)
 
 (with-eval-after-load 'company
   (define-key company-active-map (kbd "M-n") nil)
@@ -102,7 +83,7 @@
 ;; Команды для режима мульти-компиляции
 (setq multi-compile-alist '(
 		(c++-mode . (("gen-cmake" "(cd .. && bash build.sh)" (locate-dominating-file buffer-file-name ".git"))
-					 ("build" "(cd ../out/Debug && ninja)" (locate-dominating-file buffer-file-name ".git"))))))
+					 ("build" "(cd ../out/Debug && ninja -j 2)" (locate-dominating-file buffer-file-name ".git"))))))
 
 (setq multi-compile-completion-system 'helm)
 
@@ -121,5 +102,26 @@
 ;; todo сделать хук с клавишами
 ;;(add-hook 'c++-mode-hook 'clang-format-keybindings)
 ;;(add-hook 'c-mode-hook 'clang-format-keybindings)
+(require 'cquery)
+(setq cquery-executable "/Users/dmitria/utils/cquery/build/cquery")
+
+(defun cquery//enable ()
+  (condition-case nil
+      (lsp-cquery-enable)
+    (user-error nil)))
+(setq cquery-extra-init-params '(:index (:comments 2) :cacheFormat "msgpack" :completion (:detailedLabel t)))
+
+(add-hook 'c-mode-hook #'cquery//enable)
+(add-hook 'c++-mode-hook #'cquery//enable)
+
+(defun cquery-keybindings ()
+  (local-unset-key (kbd "C-."))
+  (local-unset-key (kbd "C-;"))
+  (local-set-key (kbd "C-.") 'xref-find-definitions)
+  (local-set-key (kbd "M-;") 'xref-find-references)
+  (local-set-key (kbd "C-8") 'xref-pop-marker-stack))
+
+(add-hook 'c++-mode-hook 'cquery-keybindings)
+(add-hook 'c-mode-hook 'cquery-keybindings)
 
 (provide 'plugins)
