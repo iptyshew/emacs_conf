@@ -23,5 +23,8 @@
       mac-command-modifier 'meta
       mac-option-modifier 'none)
 
+;; compilation
+(global-set-key (kbd "C-<f5>") 'kill-compilation)
+
 (provide 'my_keybindings)
 
