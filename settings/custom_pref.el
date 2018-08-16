@@ -5,7 +5,12 @@
 (setq-default cursor-type 'bar) ;; Тонкий курсор
 (set-cursor-color "#f9e796") ;; Цвет курсора
 
-(set-default-font "consolas 11") ;; Шрифт
+
+;; на маке размер шрифта больше нужен
+(if (memq window-system '(mac ns x))
+	(set-default-font "consolas 14")
+  (set-default-font "consolas 11"))
+
 
 (global-linum-mode 1) ;; Включение нумерации
 
