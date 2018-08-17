@@ -23,6 +23,12 @@
  '(package-selected-packages
    (quote
 	(company-lsp cquery lsp-mode clang-format multi-compile exec-path-from-shell helm-projectile cmake-mode powerline magit helm markdown-mode company projectile)))
+ '(projectile-enable-caching t)
+ '(projectile-ignored-projects nil)
+ '(projectile-mode t nil (projectile))
+ '(projectile-project-root-files-bottom-up
+   (quote
+	(".projectile" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs")))
  '(safe-local-variable-values
    (quote
 	((projectile-project-compilation-cmd . "bash build.sh")))))
