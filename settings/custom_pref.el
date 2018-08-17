@@ -2,15 +2,15 @@
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes") ;; Загружаем каталог с темами оформления
 (load-theme 'zenburn t)
 
+
 (setq-default cursor-type 'bar) ;; Тонкий курсор
 (set-cursor-color "#f9e796") ;; Цвет курсора
 
 
 ;; на маке размер шрифта больше нужен
 (if (eq system-type 'darwin)
-	(set-default-font "consolas 14")
+	(set-default-font "consolas 15")
   (set-default-font "consolas 11"))
-
 
 (global-linum-mode 1) ;; Включение нумерации
 
