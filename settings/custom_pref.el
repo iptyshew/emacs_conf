@@ -7,7 +7,7 @@
 
 
 ;; на маке размер шрифта больше нужен
-(if (memq window-system '(mac ns x))
+(if (eq system-type 'darwin)
 	(set-default-font "consolas 14")
   (set-default-font "consolas 11"))
 
