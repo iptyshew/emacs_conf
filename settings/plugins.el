@@ -117,4 +117,7 @@
 (add-hook 'c++-mode-hook 'cquery-keybindings)
 (add-hook 'c-mode-hook 'cquery-keybindings)
 
+(require 'helm-xref)
+(setq xref-show-xrefs-function 'helm-xref-show-xrefs)
+
 (provide 'plugins)
