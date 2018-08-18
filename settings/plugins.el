@@ -1,39 +1,32 @@
 
-;; Speedbar
-(setq sr-speedbar-right-side nil)
-(setq speedbar-use-images t)
+(require 'use-package)
 
+(use-package helm
+  :bind (("C-x C-m" . helm-M-x)
+		 ("C-x C-m" . helm-M-x)
+		 ("C-x m" . helm-M-x)
+		 ("C-x C-f" . helm-find-files)
+		 ("<f2>" . helm-buffers-list)
+		 ("M-s o" . helm-occur))
+  :init
+  (setq helm-M-x-fuzzy-match t)
+  (setq helm-display-function ;; helm всегда разделяет экран!
+		 (lambda (buf tmp)
+		   (split-window-vertically)
+		   (other-window 1)
+		   (switch-to-buffer buf))))
 
-;; Helm
-(require 'helm)
-(setq helm-M-x-fuzzy-match t) ;; нечеткий поиск
-
-(setq helm-display-function ;; helm всегда разделяет экран!
-      (lambda (buf tmp)
-        (split-window-vertically)
-        (other-window 1)
-        (switch-to-buffer buf)))
-
-(global-set-key (kbd "C-x C-m") 'helm-M-x)
-(global-set-key (kbd "C-x m") 'helm-M-x)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
-(global-set-key (kbd "<f2>") 'helm-buffers-list)
-(global-set-key (kbd "M-s o") 'helm-occur)
-
-
-;; Projectile
-(projectile-mode)
-(setq projectile-enable-caching t)
-
-(global-set-key (kbd "C-x p p") 'helm-projectile-switch-project)
-(global-set-key (kbd "C-x C-p p") 'helm-projectile-switch-project)
-(global-set-key (kbd "C-x p h") 'helm-projectile)
-(global-set-key (kbd "C-x C-p h") 'helm-projectile)
-(global-set-key (kbd "C-x p f") 'helm-projectile-find-file)
-(global-set-key (kbd "C-x C-p f") 'helm-projectile-find-file)
-(global-set-key (kbd "C-x p g") 'helm-projectile-grep)
-(global-set-key (kbd "C-x C-p g") 'helm-projectile-grep)
-
+(use-package projectile
+  :bind (("C-x p p" . helm-projectile-switch-project)
+		 ("C-x C-p p" . helm-projectile-switch-project)
+		 ("C-x p h" . helm-projectile)
+		 ("C-x C-p h" . helm-projectile)
+		 ("C-x p f" . helm-projectile-find-file)
+		 ("C-x C-p f" . helm-projectile-find-file)
+		 ("C-x p g" . helm-projectile-grep)
+		 ("C-x C-p g" . helm-projectile-grep))
+  :init
+  (setq projectile-enable-caching t))
 
 ;; magit
 (global-unset-key [f1])
