@@ -7,4 +7,8 @@ projectile-bookmarks.eld
 bookmarks
 /irony
 projectile.cache
+/themes
+/eshell
+network-security.data
+*.cache
 
