@@ -116,6 +116,7 @@
 
 (add-hook 'c++-mode-hook 'cquery-keybindings)
 (add-hook 'c-mode-hook 'cquery-keybindings)
+(setq cquery-sem-highlight-method 'font-lock)
 
 (require 'helm-xref)
 (setq xref-show-xrefs-function 'helm-xref-show-xrefs)
