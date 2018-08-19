@@ -28,10 +28,8 @@
   :init
   (setq projectile-enable-caching t))
 
-;; magit
-(global-unset-key [f1])
-(global-set-key [f1] 'magit-status)
-
+(use-package magit
+  :bind ([f1] . magit-status))
 
 ;; cmake ide
 (require 'cmake-ide)
@@ -72,29 +70,18 @@
 
 (exec-path-from-shell-copy-envs (source-file-and-get-envs "~/.profile"))
 
-
-;; Команды для режима мульти-компиляции
-(setq multi-compile-alist '(
+(use-package multi-compile
+  :bind([f5] . multi-compile-run)
+  :init
+  (setq multi-compile-alist '(
 		(c++-mode . (("gen-cmake" "(cd .. && bash build.sh)" (locate-dominating-file buffer-file-name ".git"))
 					 ("build" "(cd ../out/Debug && ninja -j 2)" (locate-dominating-file buffer-file-name ".git"))))))
+  (setq multi-compile-completion-system 'helm))
 
-(setq multi-compile-completion-system 'helm)
+(use-package clang-format
+  :bind(("C-c i" . clang-format-region)
+		("C-c u" . clang-format-buffer)))
 
-(defun multi-compile-keybindings ()
-  (local-set-key (kbd "<f5>") 'multi-compile-run))
-
-(add-hook 'c++-mode-hook 'multi-compile-keybindings)
-(add-hook 'c-mode-hook 'multi-compile-keybindings)
-
-
-;; clang format
-(require 'clang-format)
-(global-set-key (kbd "C-c i") 'clang-format-region)
-(global-set-key (kbd "C-c u") 'clang-format-buffer)
-
-;; todo сделать хук с клавишами
-;;(add-hook 'c++-mode-hook 'clang-format-keybindings)
-;;(add-hook 'c-mode-hook 'clang-format-keybindings)
 (require 'cquery)
 (setq cquery-executable "/Users/dmitria/utils/cquery/build/cquery")
 
