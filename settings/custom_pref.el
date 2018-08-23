@@ -124,5 +124,14 @@
          (split-string-and-unquote path ":")
          exec-path)))
 
+(define-derived-mode gyp-mode python-mode "GYP"
+  "Major mode for editing Generate Your Project files."
+  (setq indent-tabs-mode nil
+        tab-width 4
+        python-indent 4))
+
+(add-to-list 'auto-mode-alist '("\\.gyp$" . gyp-mode))
+(add-to-list 'auto-mode-alist '("\\.gypi$" . gyp-mode))
+
 
 (provide 'custom_pref)
