@@ -25,6 +25,7 @@
 
 ;; compilation
 (global-set-key (kbd "C-<f5>") 'kill-compilation)
+(global-set-key (kbd "<f6>") 'recompile)
 
 (provide 'my_keybindings)
 
