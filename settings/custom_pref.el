@@ -134,4 +134,8 @@
 (add-to-list 'auto-mode-alist '("\\.gypi$" . gyp-mode))
 
 
+(setq mouse-wheel-scroll-amount '(3 ((shift) . 1) ((control) . nil)))
+(setq mouse-wheel-progressive-speed nil)
+
+
 (provide 'custom_pref)
