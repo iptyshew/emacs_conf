@@ -137,5 +137,51 @@
 (setq mouse-wheel-scroll-amount '(3 ((shift) . 1) ((control) . nil)))
 (setq mouse-wheel-progressive-speed nil)
 
+(defadvice gud-display-line (around do-it-better activate)
+  (let* ((last-nonmenu-event t)	 ; Prevent use of dialog box for questions.
+	 (buffer
+	  (with-current-buffer gud-comint-buffer
+	    (gud-find-file true-file)))
+         (window (and buffer
+          (or (get-buffer-window buffer)
+          (if (eq gud-minor-mode 'gdbmi)
+              (or (if (get-buffer-window buffer 'visible)
+                  (display-buffer buffer nil 'visible))
+              (unless (gdb-display-source-buffer buffer)
+                (gdb-display-buffer buffer nil 'visible))))
+          (display-buffer buffer))))
+	 (pos))
+    (when buffer
+      (with-current-buffer buffer
+	(unless (or (verify-visited-file-modtime buffer) gud-keep-buffer)
+	  (if (yes-or-no-p
+	       (format "File %s changed on disk.  Reread from disk? "
+		       (buffer-name)))
+	      (revert-buffer t t)
+	    (setq gud-keep-buffer t)))
+	(save-restriction
+	  (widen)
+	  (goto-char (point-min))
+	  (forward-line (1- line))
+	  (setq pos (point))
+	  (or gud-overlay-arrow-position
+	      (setq gud-overlay-arrow-position (make-marker)))
+	  (set-marker gud-overlay-arrow-position (point) (current-buffer))
+	  ;; If they turned on hl-line, move the hl-line highlight to
+	  ;; the arrow's line.
+	  (when (featurep 'hl-line)
+	    (cond
+	     (global-hl-line-mode
+	      (global-hl-line-highlight))
+	     ((and hl-line-mode hl-line-sticky-flag)
+	      (hl-line-highlight)))))
+	(cond ((or (< pos (point-min)) (> pos (point-max)))
+	       (widen)
+	       (goto-char pos))))
+      (when window
+	(set-window-point window gud-overlay-arrow-position)
+	(if (eq gud-minor-mode 'gdbmi)
+	    (setq gdb-source-window window))))))
+
 
 (provide 'custom_pref)
