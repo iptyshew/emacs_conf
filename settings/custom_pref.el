@@ -133,10 +133,12 @@
 (add-to-list 'auto-mode-alist '("\\.gyp$" . gyp-mode))
 (add-to-list 'auto-mode-alist '("\\.gypi$" . gyp-mode))
 
-
+;; smoot scroll
 (setq mouse-wheel-scroll-amount '(3 ((shift) . 1) ((control) . nil)))
 (setq mouse-wheel-progressive-speed nil)
 
+
+;; Нормальный выбор окна в gdb-many-windows
 (defadvice gud-display-line (around do-it-better activate)
   (let* ((last-nonmenu-event t)	 ; Prevent use of dialog box for questions.
 	 (buffer
@@ -182,6 +184,25 @@
 	(set-window-point window gud-overlay-arrow-position)
 	(if (eq gud-minor-mode 'gdbmi)
 	    (setq gdb-source-window window))))))
+
+
+;; Команда для старта отладки
+(defun start-debug-project()
+  (interactive)
+  (funcall-interactively 'gdb (concat "gdb -i=mi --args " projectile-project-run-cmd)))
+
+(defun start-project()
+  (interactive)
+  (funcall-interactively 'async-shell-command projectile-project-run-cmd))
+
+(defun manage-project-bindings()
+  (local-unset-key (kbd "<f3>"))
+  (local-unset-key (kbd "<f4>"))
+  (local-set-key (kbd "<f3>") 'start-debug-project)
+  (local-set-key (kbd "<f4>") 'start-project))
+
+(add-hook 'c++-mode-hook 'manage-project-bindings)
+(add-hook 'c-mode-hook 'manage-project-bindings)
 
 
 (provide 'custom_pref)
