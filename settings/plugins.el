@@ -31,10 +31,6 @@
 (use-package magit
   :bind ([f1] . magit-status))
 
-;; cmake ide
-(require 'cmake-ide)
-(cmake-ide-setup)
-
 ;; company mode
 (add-hook 'after-init-hook 'global-company-mode)
 (eval-after-load 'company
@@ -74,8 +70,8 @@
   :bind([f5] . multi-compile-run)
   :init
   (setq multi-compile-alist '(
-		(c++-mode . (("gen-cmake" "(cd .. && bash build.sh)" (locate-dominating-file buffer-file-name ".git"))
-					 ("build" "(cd ../out/Debug && ninja -j 2)" (locate-dominating-file buffer-file-name ".git"))))))
+		(c++-mode . (("gen-cmake" "(cd ../.. && bash build.sh)" (locate-dominating-file buffer-file-name ".projectile"))
+					 ("build" "(cd ../../out/Debug && ninja -j 4)" (locate-dominating-file buffer-file-name ".projectile"))))))
   (setq multi-compile-completion-system 'helm))
 
 (use-package clang-format
