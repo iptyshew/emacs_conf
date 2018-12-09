@@ -70,8 +70,8 @@
   :bind([f5] . multi-compile-run)
   :init
   (setq multi-compile-alist '(
-		(c++-mode . (("gen-cmake" "(cd ../.. && bash build.sh)" (locate-dominating-file buffer-file-name ".projectile"))
-					 ("build" "(cd ../../out/Debug && ninja -j 4)" (locate-dominating-file buffer-file-name ".projectile"))))))
+		(c++-mode . (("gen-cmake" "(cd build && cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=yes && cp compile_commands.json ../)" (locate-dominating-file buffer-file-name ".projectile"))
+					 ("build" "(cd build && ninja -j 4)" (locate-dominating-file buffer-file-name ".projectile"))))))
   (setq multi-compile-completion-system 'helm))
 
 (use-package clang-format
@@ -79,7 +79,7 @@
 		("C-c u" . clang-format-buffer)))
 
 (require 'cquery)
-(setq cquery-executable "/Users/dmitria/utils/cquery/build/cquery")
+(setq cquery-executable "/home/diptyshev/Util/cquery/build/release/bin/cquery")
 
 (defun cquery//enable ()
   (condition-case nil
