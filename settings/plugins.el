@@ -26,7 +26,8 @@
 		 ("C-x p g" . helm-projectile-grep)
 		 ("C-x C-p g" . helm-projectile-grep))
   :init
-  (setq projectile-enable-caching t))
+  (setq projectile-enable-caching t)
+  (setq projectile-indexing-method 'native))
 
 (use-package magit
   :bind ([f1] . magit-status))
