@@ -1,5 +1,5 @@
 ;; Визуал
-;;(add-to-list 'custom-theme-load-path "~/.emacs.d/themes") ;; Загружаем каталог с темами оформления
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes") ;; Загружаем каталог с темами оформления
 
 (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
       doom-themes-enable-italic t) ; if nil, italics is universally disabled
@@ -13,7 +13,7 @@
 ;; на маке размер шрифта больше нужен
 (if (eq system-type 'darwin)
 	(set-default-font "consolas 15")
-  (set-default-font "consolas 11"))
+  (set-default-font "inconsolata 12"))
 
 (global-linum-mode 1) ;; Включение нумерации
 
@@ -80,7 +80,7 @@
 
 (setq-default c-basic-offset 4
 			  tab-width 4
-			  indent-tabs-mode t)
+			  indent-tabs-mode nil)
 
 (add-to-list 'auto-mode-alist '("\\.hqt\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.inl\\'" . c++-mode))
@@ -203,6 +203,9 @@
 
 (add-hook 'c++-mode-hook 'manage-project-bindings)
 (add-hook 'c-mode-hook 'manage-project-bindings)
+
+;; Удалять лишние пробелы при сохранении
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 
 (provide 'custom_pref)

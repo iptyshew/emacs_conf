@@ -70,8 +70,9 @@
   :bind([f5] . multi-compile-run)
   :init
   (setq multi-compile-alist '(
-		(c++-mode . (("gen-cmake" "(cd build && cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=yes && cp compile_commands.json ../)" (locate-dominating-file buffer-file-name ".projectile"))
-					 ("build" "(cd build && ninja -j 4)" (locate-dominating-file buffer-file-name ".projectile"))))))
+		("\\.*" . (("gen-cmake" "(cd build && cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=yes -DWITH_TESTS=yes && mv compile_commands.json ../)" (locate-dominating-file buffer-file-name ".projectile"))
+					 ("build" "(cd build && ninja -j 4)" (locate-dominating-file buffer-file-name ".projectile"))
+					 ("test" "(cd build && ninja -j 4 && ninja test)" (locate-dominating-file buffer-file-name ".projectile"))))))
   (setq multi-compile-completion-system 'helm))
 
 (use-package clang-format
