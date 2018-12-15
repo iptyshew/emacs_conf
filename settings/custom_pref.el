@@ -67,7 +67,7 @@
 ;; llvm.org coding style.
 (add-hook 'c-mode-common-hook
 	  (function
-	   (lambda nil 
+	   (lambda nil
 	     (if (string-match "llvm" buffer-file-name)
 		 (progn
 		   (c-set-style "llvm.org"))))))
@@ -207,6 +207,9 @@
 
 ;; Удалять лишние пробелы при сохранении
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+;; Открывать на весь экран при старте
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 
 (provide 'custom_pref)
