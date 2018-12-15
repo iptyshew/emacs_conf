@@ -19,6 +19,7 @@
 
 (tool-bar-mode -1) ;; Отлючение тул бара
 (scroll-bar-mode -1) ;; Отлючение скрола
+(menu-bar-mode -1) ;; Отключении меню бара
 
 (setq redisplay-dont-pause t) ;; лучшая отрисовка буфера
 
