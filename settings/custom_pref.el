@@ -13,7 +13,7 @@
 ;; на маке размер шрифта больше нужен
 (if (eq system-type 'darwin)
 	(set-default-font "consolas 15")
-  (set-default-font "inconsolata 12"))
+  (set-default-font "hack 12")) ;; https://github.com/source-foundry/Hack
 
 (global-linum-mode 1) ;; Включение нумерации
 
