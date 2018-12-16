@@ -99,7 +99,7 @@
 
 (add-hook 'c++-mode-hook 'cquery-keybindings)
 (add-hook 'c-mode-hook 'cquery-keybindings)
-(setq cquery-sem-highlight-method 'font-lock)
+;;(setq cquery-sem-highlight-method 'font-lock)
 
 
 (require 'helm-xref)
