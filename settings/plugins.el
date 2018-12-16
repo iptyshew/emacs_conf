@@ -76,21 +76,18 @@
 					 ("test" "(cd build && ninja -j 4 && ninja test)" (locate-dominating-file buffer-file-name ".projectile"))))))
   (setq multi-compile-completion-system 'helm))
 
+
 (use-package clang-format
   :bind(("C-c i" . clang-format-region)
 		("C-c u" . clang-format-buffer)))
 
+
 (require 'cquery)
 (setq cquery-executable "/home/diptyshev/Util/cquery/build/release/bin/cquery")
-
-(defun cquery//enable ()
-  (condition-case nil
-      (lsp-cquery-enable)
-    (user-error nil)))
 (setq cquery-extra-init-params '(:index (:comments 2) :cacheFormat "msgpack" :completion (:detailedLabel t)))
 
-(add-hook 'c-mode-hook #'cquery//enable)
-(add-hook 'c++-mode-hook #'cquery//enable)
+(add-hook 'c-mode-hook 'lsp)
+(add-hook 'c++-mode-hook 'lsp)
 
 (defun cquery-keybindings ()
   (local-unset-key (kbd "C-."))
