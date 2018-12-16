@@ -67,6 +67,7 @@
 
 (exec-path-from-shell-copy-envs (source-file-and-get-envs "~/.profile"))
 
+
 (use-package multi-compile
   :bind([f5] . multi-compile-run)
   :init
@@ -100,7 +101,13 @@
 (add-hook 'c-mode-hook 'cquery-keybindings)
 (setq cquery-sem-highlight-method 'font-lock)
 
+
 (require 'helm-xref)
 (setq xref-show-xrefs-function 'helm-xref-show-xrefs)
+
+
+(require 'powerline)
+(powerline-center-theme)
+
 
 (provide 'plugins)
