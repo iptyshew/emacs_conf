@@ -29,29 +29,29 @@
   (setq projectile-enable-caching t)
   (setq projectile-indexing-method 'native))
 
+
 (use-package magit
   :bind ([f1] . magit-status))
 
-;; company mode
-(add-hook 'after-init-hook 'global-company-mode)
-(eval-after-load 'company
-  '(add-to-list 'company-backends 'company-lsp))
 
-(setq company-transformers nil company-lsp-async t company-lsp-cache-candidates nil)
-(setq company-lsp-enable-snippet nil)
-(setq company-dabbrev-downcase 0)
-(setq company-idle-delay 0)
-
-(with-eval-after-load 'company
-  (define-key company-active-map (kbd "M-n") nil)
-  (define-key company-active-map (kbd "M-p") nil)
-  (define-key company-active-map (kbd "C-h") nil)
-  (define-key company-active-map (kbd "C-n") #'company-select-next)
-  (define-key company-active-map (kbd "C-p") #'company-select-previous))
-
-(with-eval-after-load 'company
-  (define-key company-active-map (kbd "C-n") (lambda () (interactive) (company-complete-common-or-cycle 1)))
-  (define-key company-active-map (kbd "C-p") (lambda () (interactive) (company-complete-common-or-cycle -1))))
+(use-package company
+  :ensure t
+  :hook (after-init-hook global-company-mode)
+  :init
+  (eval-after-load 'company
+    '(add-to-list 'company-backends 'company-lsp))
+  (setq company-transformers nil)
+  (setq company-lsp-async t)
+  (setq company-lsp-cache-candidates nil)
+  (setq company-lsp-enable-snippet nil)
+  (setq company-dabbrev-downcase 0)
+  (setq company-idle-delay 0)
+  :bind (:map company-active-map
+              ("M-n" . nil)
+              ("M-p" . nil)
+              ("C-h" . nil)
+              ("C-n" . #'company-select-next)
+              ("C-p" . #'company-select-previous)))
 
 
 ;; Mac os only. Подхватывание переменных окружения
@@ -86,6 +86,7 @@
 (require 'cquery)
 (setq cquery-executable "/home/diptyshev/Util/cquery/build/release/bin/cquery")
 (setq cquery-extra-init-params '(:index (:comments 2) :cacheFormat "msgpack" :completion (:detailedLabel t)))
+(setq lsp-enable-snippet nil)
 
 (add-hook 'c-mode-hook 'lsp)
 (add-hook 'c++-mode-hook 'lsp)
@@ -115,8 +116,7 @@
   :config
   (dashboard-setup-startup-hook)
   (setq dashboard-items '((recents  . 5)
-                        (projects . 5)
-                        (agenda . 5))))
-
+                          (projects . 5)
+                          (agenda . 5))))
 
 (provide 'plugins)
