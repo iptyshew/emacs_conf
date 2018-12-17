@@ -100,15 +100,13 @@
 
 (add-hook 'c++-mode-hook 'cquery-keybindings)
 (add-hook 'c-mode-hook 'cquery-keybindings)
-;;(setq cquery-sem-highlight-method 'font-lock)
+
+(use-package helm-xref
+  :init (setq xref-show-xrefs-function 'helm-xref-show-xrefs))
 
 
-(require 'helm-xref)
-(setq xref-show-xrefs-function 'helm-xref-show-xrefs)
-
-
-(require 'powerline)
-(powerline-center-theme)
+(use-package powerline
+  :init (powerline-center-theme))
 
 
 (use-package dashboard
