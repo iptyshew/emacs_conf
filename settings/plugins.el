@@ -95,6 +95,7 @@
   (local-unset-key (kbd "C-."))
   (local-unset-key (kbd "C-;"))
   (local-set-key (kbd "C-.") 'xref-find-definitions)
+  (local-set-key (kbd "M-.") 'lsp-goto-implementation)
   (local-set-key (kbd "M-;") 'xref-find-references)
   (local-set-key (kbd "C-8") 'xref-pop-marker-stack))
 
