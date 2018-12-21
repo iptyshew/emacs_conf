@@ -85,6 +85,8 @@
 (add-to-list 'auto-mode-alist '("\\.inl\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
+(add-to-list 'auto-mode-alist '("\\.ypp\\'" . bison-mode))
+
 (setq-default c-indent-tabs-mode t     ; Pressing TAB should cause indentation
 			  c-indent-level 4         ; A TAB is equivilent to four spaces
 			  c-argdecl-indent 0       ; Do not indent argument decl's extra

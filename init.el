@@ -36,7 +36,7 @@
     (".*/boost.*" ".*/software.*" ".*/engine3d.*" ".*/thirdparty.*" ".*/qt.*" ".*/moc/.*")))
  '(package-selected-packages
    (quote
-    (dashboard solarized-theme doom-themes helm-xref use-package company-lsp cquery lsp-mode clang-format multi-compile exec-path-from-shell helm-projectile cmake-mode powerline magit helm markdown-mode company projectile)))
+    (bison-mode dashboard solarized-theme doom-themes helm-xref use-package company-lsp cquery lsp-mode clang-format multi-compile exec-path-from-shell helm-projectile cmake-mode powerline magit helm markdown-mode company projectile)))
  '(projectile-enable-caching t)
  '(projectile-globally-ignored-directories
    (quote
@@ -48,7 +48,8 @@
     (".projectile" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs")))
  '(safe-local-variable-values
    (quote
-    ((projectile-project-compilation-cmd . "bash build.sh")))))
+    ((encoding . utf-8)
+     (projectile-project-compilation-cmd . "bash build.sh")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

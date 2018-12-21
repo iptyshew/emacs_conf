@@ -118,4 +118,6 @@
                           (projects . 5)
                           (agenda . 5))))
 
+(use-package bison-mode)
+
 (provide 'plugins)
