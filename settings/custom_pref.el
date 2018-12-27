@@ -211,5 +211,7 @@
 ;; Открывать на весь экран при старте
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
+(setq default-input-method 'cyrillic-jis-russian)
+
 
 (provide 'custom_pref)
