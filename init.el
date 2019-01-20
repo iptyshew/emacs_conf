@@ -66,3 +66,4 @@
 (require 'my_keybindings)
 (require 'package)
 (require 'plugins)
+(require 'hooks)
