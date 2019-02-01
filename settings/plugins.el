@@ -9,6 +9,7 @@
 		 ("<f2>" . helm-buffers-list)
 		 ("M-s o" . helm-occur))
   :init
+  (define-key helm-map (kbd "C-h") nil) ;; Удаление символов по C-h в строке helm
   (setq helm-M-x-fuzzy-match t)
   (setq helm-display-function ;; helm всегда разделяет экран!
 		 (lambda (buf tmp)
