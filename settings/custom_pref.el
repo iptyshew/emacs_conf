@@ -152,5 +152,6 @@
 
 (setq default-input-method 'cyrillic-jis-russian)
 
+(define-key isearch-mode-map (kbd "C-h") 'isearch-del-char) ;; Возможность удалять символы в режиме isearch
 
 (provide 'custom_pref)
