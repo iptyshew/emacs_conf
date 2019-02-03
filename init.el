@@ -46,6 +46,7 @@
  '(projectile-project-root-files-bottom-up
    (quote
     (".projectile" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs")))
+ '(ring-bell-function (quote ignore))
  '(safe-local-variable-values
    (quote
     ((encoding . utf-8)

@@ -11,7 +11,7 @@
 ;; на маке размер шрифта больше нужен
 (if (eq system-type 'darwin)
 	(set-default-font "consolas 15")
-  (set-default-font "hack 12")) ;; https://github.com/source-foundry/Hack
+  (set-default-font "consolas 12"))
 
 (global-linum-mode 1) ;; Включение нумерации
 
@@ -66,7 +66,7 @@
 
 
 ;; Подтягивание переменных окружения в emacs
-(let ((path (shell-command-to-string ". ~/.bashrc; echo -n $PATH")))
+(let ((path (shell-command-to-string ". ~/.zshrc; echo -n $PATH")))
   (setenv "PATH" path)
   (setq exec-path
         (append

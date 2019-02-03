@@ -9,13 +9,14 @@
 		 ("<f2>" . helm-buffers-list)
 		 ("M-s o" . helm-occur))
   :init
-  (define-key helm-map (kbd "C-h") nil) ;; Удаление символов по C-h в строке helm
   (setq helm-M-x-fuzzy-match t)
   (setq helm-display-function ;; helm всегда разделяет экран!
 		 (lambda (buf tmp)
 		   (split-window-vertically)
 		   (other-window 1)
-		   (switch-to-buffer buf))))
+		   (switch-to-buffer buf)))
+  :config
+  (define-key helm-map (kbd "C-h") nil)) ;; Удаление символов по C-h в строке helm
 
 (use-package projectile
   :bind (("C-x p p" . helm-projectile-switch-project)
@@ -74,8 +75,8 @@
   :init
   (setq multi-compile-alist '(
 		("\\.*" . (("gen-cmake" "(cd build && cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=yes -DWITH_TESTS=yes && mv compile_commands.json ../)" (locate-dominating-file buffer-file-name ".projectile"))
-					 ("build" "(cd build && ninja -j 4)" (locate-dominating-file buffer-file-name ".projectile"))
-					 ("test" "(cd build && ninja -j 4 && ninja test)" (locate-dominating-file buffer-file-name ".projectile"))))))
+				   ("build" "(cd build && ninja -j 4)" (locate-dominating-file buffer-file-name ".projectile"))
+				   ("test" "(cd build && ninja -j 4 && ninja test)" (locate-dominating-file buffer-file-name ".projectile"))))))
   (setq multi-compile-completion-system 'helm))
 
 
@@ -85,7 +86,7 @@
 
 
 (require 'cquery)
-(setq cquery-executable "/home/diptyshev/Util/cquery/build/release/bin/cquery")
+(setq cquery-executable "/home/iptyshew/util/cquery/build/cquery")
 (setq cquery-extra-init-params '(:index (:comments 2) :cacheFormat "msgpack" :completion (:detailedLabel t)))
 (setq lsp-enable-snippet nil)
 
@@ -119,7 +120,9 @@
                           (projects . 5)
                           (agenda . 5))))
 
-(use-package bison-mode)
+(use-package
+  bison-mode
+  :ensure t)
 
 (use-package treemacs
   :ensure t
