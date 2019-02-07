@@ -74,6 +74,7 @@
 
   ;; code for syntax highlighting
   (setq font-lock-defaults '((xp-font-lock-keywords)))
+  (setq compile-command (concat "rcc --taxonomy ~/WorkData/kb/taxonomy.json -l n " buffer-file-name))
   (add-to-list 'auto-mode-alist '("\\.xp\\'" . xp-mode)))
 
 (add-to-list 'auto-mode-alist '("\\.xp\\'" . xp-mode))
