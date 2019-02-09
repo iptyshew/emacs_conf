@@ -1,35 +1,42 @@
-
 (require 'use-package)
 
-(use-package helm
-  :bind (("C-x C-m" . helm-M-x)
-		 ("C-x C-m" . helm-M-x)
-		 ("C-x m" . helm-M-x)
-		 ("C-x C-f" . helm-find-files)
-		 ("<f2>" . helm-buffers-list)
-		 ("M-s o" . helm-occur))
-  :init
-  (setq helm-M-x-fuzzy-match t)
-  (setq helm-display-function ;; helm всегда разделяет экран!
-		 (lambda (buf tmp)
-		   (split-window-vertically)
-		   (other-window 1)
-		   (switch-to-buffer buf)))
+(use-package ivy
+  :ensure t
   :config
-  (define-key helm-map (kbd "C-h") nil)) ;; Удаление символов по C-h в строке helm
+  (setq ivy-use-virtual-buffers t)
+  (setq ivy-count-format "(%d/%d) ")
+  (setq ivy-subdir t)
+  (setq ivy-re-builders-alist
+      '((t . ivy--regex-fuzzy)))
+  :bind
+  ("<f2>" . counsel-ibuffer))
+
+
+(use-package swiper
+  :ensure t
+  :bind
+  ("C-s" . swiper))
+
+
+(use-package counsel
+  :ensure t
+  :bind
+  ("C-x C-m" . counsel-M-x)
+  ("C-x C-f" . counsel-find-file))
+
 
 (use-package projectile
-  :bind (("C-x p p" . helm-projectile-switch-project)
-		 ("C-x C-p p" . helm-projectile-switch-project)
-		 ("C-x p h" . helm-projectile)
-		 ("C-x C-p h" . helm-projectile)
-		 ("C-x p f" . helm-projectile-find-file)
-		 ("C-x C-p f" . helm-projectile-find-file)
-		 ("C-x p g" . helm-projectile-grep)
-		 ("C-x C-p g" . helm-projectile-grep))
-  :init
-  (setq projectile-enable-caching t)
-  (setq projectile-indexing-method 'native))
+   :init
+   (setq projectile-enable-caching t)
+   (setq projectile-indexing-method 'native)
+   (setq projectile-completion-system 'ivy)
+   :bind
+   ("C-x p p" . projectile-switch-project)
+   ("C-x C-p p" . projectile-switch-project)
+   ("C-x p f" . projectile-find-file)
+   ("C-x C-p f" . projectile-find-file)
+   ("C-x p g" . projectile-grep)
+   ("C-x C-p g" . projectile-grep))
 
 
 (use-package magit
@@ -77,7 +84,7 @@
 		("\\.*" . (("gen-cmake" "cmake -B build -H. -G \"Ninja\" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=yes -DWITH_TESTS=yes" (locate-dominating-file buffer-file-name ".projectile"))
 				   ("build" "cmake --build build" (locate-dominating-file buffer-file-name ".projectile"))
 				   ("test" "cmake --build build && ninja -C build test" (locate-dominating-file buffer-file-name ".projectile"))))))
-  (setq multi-compile-completion-system 'helm))
+  (setq multi-compile-completion-system 'ivy))
 
 
 (use-package clang-format
@@ -104,8 +111,8 @@
 (add-hook 'c++-mode-hook 'cquery-keybindings)
 (add-hook 'c-mode-hook 'cquery-keybindings)
 
-(use-package helm-xref
-  :init (setq xref-show-xrefs-function 'helm-xref-show-xrefs))
+;;(use-package helm-xref
+;;  :init (setq xref-show-xrefs-function 'helm-xref-show-xrefs))
 
 
 (use-package powerline
