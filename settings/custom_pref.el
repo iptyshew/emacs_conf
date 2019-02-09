@@ -147,9 +147,6 @@
 ;; Удалять лишние пробелы при сохранении
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
-;; Открывать на весь экран при старте
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
-
 (setq default-input-method 'cyrillic-jis-russian)
 
 (define-key isearch-mode-map (kbd "C-h") 'isearch-del-char) ;; Возможность удалять символы в режиме isearch
