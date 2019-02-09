@@ -1,13 +1,20 @@
 (require 'use-package)
 
+(use-package swiper
+  :ensure t
+  :bind
+  ("C-s" . swiper))
+
 (use-package ivy
   :ensure t
+  :after (swiper)
   :config
   (setq ivy-use-virtual-buffers t)
   (setq ivy-count-format "(%d/%d) ")
   (setq ivy-subdir t)
   (setq ivy-re-builders-alist
-      '((t . ivy--regex-fuzzy)))
+        '((swiper . ivy--regex-plus)
+          (t . ivy--regex-fuzzy)))
   :bind
   ("<f2>" . counsel-ibuffer))
 
