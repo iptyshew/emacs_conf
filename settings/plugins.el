@@ -88,12 +88,13 @@
 (require 'cquery)
 (setq cquery-executable "/home/iptyshew/util/cquery/build/cquery")
 (setq cquery-extra-init-params '(:index (:comments 2) :cacheFormat "msgpack" :completion (:detailedLabel t)))
+
 (setq lsp-enable-snippet nil)
 
 (add-hook 'c-mode-hook 'lsp)
 (add-hook 'c++-mode-hook 'lsp)
 
-(defun cquery-keybindings ()
+(defun lsp-keybindings ()
   (local-unset-key (kbd "C-."))
   (local-unset-key (kbd "C-;"))
   (local-set-key (kbd "C-.") 'xref-find-definitions)
@@ -101,8 +102,8 @@
   (local-set-key (kbd "M-;") 'xref-find-references)
   (local-set-key (kbd "C-8") 'xref-pop-marker-stack))
 
-(add-hook 'c++-mode-hook 'cquery-keybindings)
-(add-hook 'c-mode-hook 'cquery-keybindings)
+(add-hook 'c++-mode-hook 'lsp-keybindings)
+(add-hook 'c-mode-hook 'lsp-keybindings)
 
 (use-package helm-xref
   :init (setq xref-show-xrefs-function 'helm-xref-show-xrefs))
