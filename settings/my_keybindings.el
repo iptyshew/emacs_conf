@@ -1,6 +1,7 @@
 ;; настройки клавиш
 (require 'utils)
 
+(global-unset-key (kbd "<f2>")) ;; For ibuffer
 (global-unset-key (kbd "C-z")) ;; Мешает работе
 (global-unset-key (kbd "C-x m")) ;; Мешает работе
 (global-unset-key (kbd "C-x C-c")) ;; Мешает работе
@@ -28,4 +29,3 @@
 (global-set-key (kbd "<f6>") 'recompile)
 
 (provide 'my_keybindings)
-

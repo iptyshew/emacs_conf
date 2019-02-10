@@ -15,8 +15,9 @@
   (setq ivy-re-builders-alist
         '((swiper . ivy--regex-plus)
           (t . ivy--regex-fuzzy)))
-  :bind
-  ("<f2>" . counsel-ibuffer))
+  (setq ivy-initial-inputs-alist nil))
+
+(global-set-key (kbd "<f2>") 'counsel-ibuffer) ;; In use-package not work with 2C
 
 
 (use-package swiper
