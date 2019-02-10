@@ -136,9 +136,9 @@
                           (projects . 5)
                           (agenda . 5))))
 
-(use-package
-  bison-mode
-  :ensure t)
+(use-package bison-mode
+  :ensure t
+  :mode ("\\.re\\'" . bison-mode))
 
 (use-package treemacs
   :ensure t
