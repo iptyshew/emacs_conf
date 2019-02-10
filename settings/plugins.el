@@ -89,10 +89,10 @@
   :bind([f5] . multi-compile-run)
   :init
   (setq multi-compile-alist '(
-		("\\.*" . (("gen-cmake" "cmake -B build -H. -G \"Ninja\" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=yes -DWITH_TESTS=yes" (locate-dominating-file buffer-file-name ".projectile"))
+		("\\.*" . (("gen-cmake" "cmake -B build -H. -G \"Ninja\" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=yes -DWITH_TESTS=yes && mv build/compile_commands.json ." (locate-dominating-file buffer-file-name ".projectile"))
 				   ("build" "cmake --build build" (locate-dominating-file buffer-file-name ".projectile"))
 				   ("test" "cmake --build build && ninja -C build test" (locate-dominating-file buffer-file-name ".projectile"))))))
-  (setq multi-compile-completion-system 'ivy))
+  (setq multi-compile-completion-system 'ido))
 
 
 (use-package clang-format
