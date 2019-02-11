@@ -22,9 +22,7 @@
 (use-package counsel
   :ensure t
   :bind
-  ("C-x C-m" . counsel-M-x)
   ("C-x C-f" . counsel-find-file))
-
 
 (use-package projectile
    :init
@@ -200,5 +198,14 @@
   :after treemacs dired
   :ensure t
   :config (treemacs-icons-dired-mode))
+
+
+(use-package amx
+  :ensure t
+  :config
+  (amx-mode 1)
+  (setq amx-backend (quote ivy))
+  :bind
+  ("C-x C-m" . amx))
 
 (provide 'plugins)
