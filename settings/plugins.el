@@ -203,7 +203,14 @@
   :config
   (amx-mode 1)
   (setq amx-backend (quote ivy))
+  (define-key amx-map (kbd "C-h") nil)
   :bind
   ("C-x C-m" . amx))
+
+(use-package popwin
+  :ensure t
+  :config
+  (popwin-mode 1))
+(global-set-key (kbd "C-z") popwin:keymap)
 
 (provide 'plugins)
