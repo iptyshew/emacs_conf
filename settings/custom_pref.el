@@ -23,7 +23,6 @@
 (setq search-highlight        t ;; Подсветка результатов поиска
       query-replace-highlight t ;; Подсветка замены
       auto-window-vscroll     nil)
-;; Визуал
 
 
 ;; Общие удобства

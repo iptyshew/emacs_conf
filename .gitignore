@@ -9,4 +9,8 @@ bookmarks
 projectile.cache
 /eshell
 network-security.data
+amx-items
+recentf
+.lsp-session-v1
+.DS_Store
 *.cache

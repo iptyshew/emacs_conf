@@ -111,9 +111,6 @@
 (add-hook 'c++-mode-hook 'lsp-keybindings)
 (add-hook 'c-mode-hook 'lsp-keybindings)
 
-;;(use-package helm-xref
-;;  :init (setq xref-show-xrefs-function 'helm-xref-show-xrefs))
-
 
 (use-package powerline
   :init (powerline-center-theme))
@@ -130,6 +127,7 @@
 (use-package bison-mode
   :ensure t
   :mode ("\\.re\\'" . bison-mode))
+
 
 (use-package treemacs
   :ensure t
