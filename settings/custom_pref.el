@@ -1,9 +1,6 @@
 ;; Визуал
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes") ;; Загружаем каталог с темами оформления
 
-;;(setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-;;      doom-themes-enable-italic t) ; if nil, italics is universally disabled
-
 (setq-default cursor-type 'bar) ;; Тонкий курсор
 (set-cursor-color "#f9e796") ;; Цвет курсора
 
