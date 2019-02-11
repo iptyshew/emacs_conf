@@ -92,7 +92,8 @@
 
 
 (require 'cquery)
-(setq cquery-executable "/home/iptyshew/util/cquery/build/cquery")
+(setq cquery-executable (expand-file-name "~/util/cquery/build/cquery"))
+
 (setq cquery-extra-init-params '(:index (:comments 2) :cacheFormat "msgpack" :completion (:detailedLabel t)))
 
 (setq lsp-enable-snippet nil)
