@@ -28,4 +28,7 @@
 (global-set-key (kbd "C-<f5>") 'kill-compilation)
 (global-set-key (kbd "<f6>") 'recompile)
 
+
+(global-set-key (kbd "C-x C-o") 'other-window)
+
 (provide 'my_keybindings)
