@@ -154,5 +154,6 @@ Repeated invocations toggle between the two most recently open buffers."
   (switch-to-buffer (other-buffer (current-buffer) 1)))
 
 (global-set-key (kbd "C-c b") #'switch-to-previous-buffer)
+(global-set-key (kbd "C-c C-b") #'switch-to-previous-buffer)
 
 (provide 'custom_pref)
