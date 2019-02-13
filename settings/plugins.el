@@ -127,6 +127,7 @@
 (use-package bison-mode
   :ensure t
   :mode ("\\.re\\'" . bison-mode))
+(add-hook 'bison-mode-hook (lambda () (electric-indent-mode -1)))
 
 
 (use-package treemacs
