@@ -212,7 +212,9 @@
 (use-package popwin
   :ensure t
   :config
-  (popwin-mode 1))
+  (popwin-mode 1)
+  (setq popwin:popup-window-position (quote right))
+  (setq popwin:popup-window-width 80))
 (global-set-key (kbd "C-z") popwin:keymap)
 
 
