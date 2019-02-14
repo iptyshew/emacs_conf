@@ -1,1 +1,0 @@
-((nil . ((projectile-project-run-cmd . "~/buildSource/carrouting-dev/out/Debug/Navi_TestApp -m /home/d.iptyshev/Data/nsk/map -f /home/d.iptyshev/Data/nsk/graph -p /home/d.iptyshev/Data/points/p1.json"))))
