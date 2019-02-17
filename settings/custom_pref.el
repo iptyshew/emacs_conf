@@ -122,23 +122,16 @@
 	    (setq gdb-source-window window))))))
 
 
-;; Команда для старта отладки
+;; Debug commands
 (defun start-debug-project()
   (interactive)
   (funcall-interactively 'gdb (concat "gdb -i=mi --args " projectile-project-run-cmd)))
 
-(defun start-project()
-  (interactive)
-  (funcall-interactively 'async-shell-command projectile-project-run-cmd))
+(global-set-key (kbd "<f3>") 'start-debug-project)
+(global-set-key (kbd "<f7>") 'gud-step)
+(global-set-key (kbd "<f8>") 'gud-next)
+(global-set-key (kbd "<f9>") 'gud-cont)
 
-(defun manage-project-bindings()
-  (local-unset-key (kbd "<f3>"))
-  (local-unset-key (kbd "<f4>"))
-  (local-set-key (kbd "<f3>") 'start-debug-project)
-  (local-set-key (kbd "<f4>") 'start-project))
-
-(add-hook 'c++-mode-hook 'manage-project-bindings)
-(add-hook 'c-mode-hook 'manage-project-bindings)
 
 ;; Удалять лишние пробелы при сохранении
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
