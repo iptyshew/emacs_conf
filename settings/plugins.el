@@ -101,6 +101,7 @@
 
 (add-hook 'c-mode-hook 'lsp)
 (add-hook 'c++-mode-hook 'lsp)
+(add-hook 'python-mode-hook 'lsp)
 
 (defun lsp-keybindings ()
   (local-unset-key (kbd "C-."))
@@ -112,6 +113,8 @@
 
 (add-hook 'c++-mode-hook 'lsp-keybindings)
 (add-hook 'c-mode-hook 'lsp-keybindings)
+(add-hook 'python-mode-hook 'lsp-keybindings)
+
 
 
 (use-package powerline
