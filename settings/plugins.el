@@ -12,9 +12,6 @@
   (setq ivy-use-virtual-buffers t)
   (setq ivy-count-format "(%d/%d) ")
   (setq ivy-subdir t)
-  (setq ivy-re-builders-alist
-        '((swiper . ivy--regex-plus)
-          (t . ivy--regex-fuzzy)))
   (setq ivy-initial-inputs-alist nil))
 
 (global-set-key (kbd "<f2>") 'counsel-ibuffer) ;; In use-package not work with 2C
@@ -93,7 +90,7 @@
 
 
 (require 'cquery)
-(setq cquery-executable (expand-file-name "~/util/cquery/build/cquery"))
+(setq cquery-executable (expand-file-name "~/utils/cquery/build/cquery"))
 
 (setq cquery-extra-init-params '(:index (:comments 2) :cacheFormat "msgpack" :completion (:detailedLabel t)))
 
