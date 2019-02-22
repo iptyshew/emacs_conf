@@ -1,0 +1,3 @@
+[submodule "emacs-multi-compile"]
+	path = thirdparty/emacs-multi-compile
+	url = git@github.com:iptyshew/emacs-multi-compile.git
