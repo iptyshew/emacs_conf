@@ -225,5 +225,10 @@
   :ensure t
   :config (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
 
+(use-package avy
+  :ensure t
+  :bind (("C-;" . avy-goto-char-2)
+		 ("C-c C-;" . avy-goto-word-1)))
+
 
 (provide 'plugins)

@@ -32,7 +32,7 @@
  '(global-company-mode t)
  '(package-selected-packages
    (quote
-    (ivy-xref popwin amx flx counsel swiper ivy treemacs-icons-dired treemacs-projectile treemacs bison-mode dashboard solarized-theme doom-themes helm-xref use-package company-lsp cquery lsp-mode clang-format multi-compile exec-path-from-shell cmake-mode powerline magit markdown-mode company projectile)))
+    (ivy-xref popwin amx flx counsel swiper ivy treemacs-icons-dired treemacs-projectile treemacs bison-mode dashboard solarized-theme doom-themes use-package company-lsp cquery lsp-mode clang-format multi-compile exec-path-from-shell cmake-mode powerline magit markdown-mode company projectile)))
  '(projectile-enable-caching t)
  '(projectile-globally-ignored-directories
    (quote
