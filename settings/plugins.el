@@ -19,7 +19,9 @@
 (use-package counsel
   :ensure t
   :bind
-  ("C-x C-f" . counsel-find-file))
+  ("C-x C-f" . counsel-find-file)
+  ("C-x g" . counsel-git-grep)
+  ("C-x C-g" . counsel-git-grep))
 
 (use-package projectile
    :init
@@ -36,7 +38,8 @@
 
 
 (use-package magit
-  :bind ([f1] . magit-status))
+  :bind
+  ([f1] . magit-status))
 
 
 (use-package company
