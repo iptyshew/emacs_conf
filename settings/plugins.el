@@ -106,18 +106,11 @@
 (add-hook 'c++-mode-hook 'lsp)
 (add-hook 'python-mode-hook 'lsp)
 
-(defun lsp-keybindings ()
-  (local-unset-key (kbd "C-."))
-  (local-unset-key (kbd "C-;"))
-  (local-set-key (kbd "C-.") 'xref-find-definitions)
-  (local-set-key (kbd "M-.") 'lsp-goto-implementation)
-  (local-set-key (kbd "M-;") 'xref-find-references)
-  (local-set-key (kbd "C-8") 'xref-pop-marker-stack))
-
-(add-hook 'c++-mode-hook 'lsp-keybindings)
-(add-hook 'c-mode-hook 'lsp-keybindings)
-(add-hook 'python-mode-hook 'lsp-keybindings)
-
+(global-unset-key (kbd "C-."))
+(global-set-key (kbd "C-.") 'xref-find-definitions)
+(global-set-key (kbd "M-.") 'lsp-goto-implementation)
+(global-set-key (kbd "M-;") 'xref-find-references)
+(global-set-key (kbd "C-8") 'xref-pop-marker-stack)
 
 
 (use-package powerline
