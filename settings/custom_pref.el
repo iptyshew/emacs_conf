@@ -136,7 +136,7 @@
 ;; Удалять лишние пробелы при сохранении
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
-(setq default-input-method 'cyrillic-jis-russian)
+(setq default-input-method 'russian-computer)
 
 (define-key isearch-mode-map (kbd "C-h") 'isearch-del-char) ;; Возможность удалять символы в режиме isearch
 
