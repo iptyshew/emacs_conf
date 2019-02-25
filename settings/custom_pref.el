@@ -154,6 +154,7 @@ Repeated invocations toggle between the two most recently open buffers."
   (interactive)
   (switch-to-buffer (other-buffer (current-buffer) 1)))
 
+(add-hook 'c++-mode-hook (lambda () (local-unset-key (kbd "C-c C-b"))))
 (global-set-key (kbd "C-c b") #'switch-to-previous-buffer)
 (global-set-key (kbd "C-c C-b") #'switch-to-previous-buffer)
 
