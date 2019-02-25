@@ -31,7 +31,15 @@
 (fset 'yes-or-no-p 'y-or-n-p) ;; Простое потверждение.
 (setq compilation-scroll-output t) ;; прокрутка окна компиляции
 
-(windmove-default-keybindings 'meta) ;; Включаем переключение между окнами через Meta
+(global-unset-key (kbd "M-h"))
+(global-set-key (kbd "M-h")  'windmove-left)
+(global-unset-key (kbd "M-l"))
+(global-set-key (kbd "M-l") 'windmove-right)
+(global-unset-key (kbd "M-k"))
+(global-set-key (kbd "M-k")    'windmove-up)
+(global-unset-key (kbd "M-j"))
+(global-set-key (kbd "M-j")  'windmove-down)
+
 
 (delete-selection-mode t) ;; Автоудаление выделеного.
 
