@@ -94,12 +94,6 @@
   :bind(("C-c i" . clang-format-region)
 		("C-c u" . clang-format-buffer)))
 
-
-(require 'cquery)
-(setq cquery-executable (expand-file-name "~/utils/cquery/build/cquery"))
-(setq cquery-cache-dir-function 'cquery-cache-dir-consolidated)
-(setq cquery-extra-init-params '(:index (:comments 2) :cacheFormat "msgpack" :completion (:detailedLabel t)))
-
 (setq lsp-enable-snippet nil)
 
 (add-hook 'c-mode-hook 'lsp)

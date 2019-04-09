@@ -32,6 +32,8 @@
  '(ecb-options-version "2.50")
  '(ecb-primary-secondary-mouse-buttons (quote mouse-1--mouse-2))
  '(global-company-mode t)
+ '(lsp-clients-clangd-executable
+   "/Users/dmitria/utils/llvm/clang+llvm-8.0.0-x86_64-apple-darwin/bin/clangd")
  '(mouse-wheel-progressive-speed nil)
  '(package-selected-packages
    (quote
