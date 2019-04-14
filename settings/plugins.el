@@ -85,7 +85,7 @@
   (setq multi-compile-alist '(
 		("\\.*" . (("gen-cmake" "cmake -B build -H. -G \"Ninja\" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=yes -DWITH_TESTS=yes && mv build/compile_commands.json ." (locate-dominating-file buffer-file-name ".projectile"))
 				   ("build" "cmake --build build" (locate-dominating-file buffer-file-name ".projectile"))
-				   ("test" "cmake --build build && (cd build && ctest -V | grep -w \"FAILED\" -B 5)" (locate-dominating-file buffer-file-name ".projectile"))
+				   ("test" "cmake --build build && (cd build && ctest -I 3 -V)" (locate-dominating-file buffer-file-name ".projectile"))
                    ("clear" "rm -rf build" (locate-dominating-file buffer-file-name ".projectile"))))))
   (setq multi-compile-completion-system 'ivy))
 
