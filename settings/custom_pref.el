@@ -135,10 +135,10 @@
   (interactive)
   (funcall-interactively 'gdb (concat "gdb -i=mi --args " projectile-project-run-cmd)))
 
-(global-set-key (kbd "<f3>") 'start-debug-project)
-(global-set-key (kbd "<f7>") 'gud-step)
-(global-set-key (kbd "<f8>") 'gud-next)
-(global-set-key (kbd "<f9>") 'gud-cont)
+;;(global-set-key (kbd "<f3>") 'start-debug-project)
+;;(global-set-key (kbd "<f7>") 'gud-step)
+;;(global-set-key (kbd "<f8>") 'gud-next)
+;;(global-set-key (kbd "<f9>") 'gud-cont)
 
 
 ;; Удалять лишние пробелы при сохранении
