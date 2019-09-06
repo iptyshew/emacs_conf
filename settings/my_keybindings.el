@@ -2,6 +2,7 @@
 (require 'utils)
 
 (global-unset-key (kbd "<f2>")) ;; For ibuffer
+(global-unset-key (kbd "<f3>")) ;; For ibuffer
 (global-unset-key (kbd "C-z")) ;; Мешает работе
 (global-unset-key (kbd "C-x m")) ;; Мешает работе
 (global-unset-key (kbd "C-x C-c")) ;; Мешает работе

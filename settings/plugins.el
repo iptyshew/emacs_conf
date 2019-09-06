@@ -15,6 +15,7 @@
   (setq ivy-initial-inputs-alist nil))
 
 (global-set-key (kbd "<f2>") 'counsel-ibuffer) ;; In use-package not work with 2C
+(global-set-key (kbd "<f3>") 'counsel-ibuffer) ;; In use-package not work with 2C
 
 (use-package counsel
   :ensure t
@@ -94,11 +95,6 @@
   :bind(("C-c i" . clang-format-region)
 		("C-c u" . clang-format-buffer)))
 
-
-(require 'cquery)
-(setq cquery-executable (expand-file-name "~/utils/cquery/build/cquery"))
-(setq cquery-cache-dir-function 'cquery-cache-dir-consolidated)
-(setq cquery-extra-init-params '(:index (:comments 2) :cacheFormat "msgpack" :completion (:detailedLabel t)))
 
 (setq lsp-enable-snippet nil)
 
@@ -227,6 +223,5 @@
   :ensure t
   :bind (("C-c C-;" . avy-goto-char-2)
 		 ("C-;" . avy-goto-word-1)))
-
 
 (provide 'plugins)
