@@ -97,6 +97,7 @@
 
 
 (setq lsp-enable-snippet nil)
+(setq lsp-enable-on-type-formatting nil)
 
 (add-hook 'c-mode-hook 'lsp)
 (add-hook 'c++-mode-hook 'lsp)

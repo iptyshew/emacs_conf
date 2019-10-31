@@ -32,12 +32,15 @@
  '(ecb-options-version "2.50")
  '(ecb-primary-secondary-mouse-buttons (quote mouse-1--mouse-2))
  '(global-company-mode t)
- '(lsp-clients-clangd-args (quote ("-background-index")))
+ '(lsp-clients-clangd-args (quote ("-background-index" "-j=3")))
  '(lsp-clients-clangd-executable "clangd-8")
+ '(lsp-enable-indentation nil)
+ '(lsp-enable-snippet nil)
+ '(lsp-enable-symbol-highlighting t)
  '(mouse-wheel-progressive-speed nil)
  '(package-selected-packages
    (quote
-    (ecb ivy-xref popwin amx flx counsel swiper ivy treemacs-icons-dired treemacs-projectile treemacs bison-mode dashboard solarized-theme doom-themes use-package company-lsp lsp-mode clang-format exec-path-from-shell cmake-mode powerline magit markdown-mode company projectile)))
+    (counsel-tramp dap-mode ecb ivy-xref popwin amx flx counsel swiper ivy treemacs-icons-dired treemacs-projectile treemacs bison-mode dashboard solarized-theme doom-themes use-package company-lsp cquery lsp-mode clang-format exec-path-from-shell cmake-mode powerline magit markdown-mode company projectile)))
  '(projectile-enable-caching t)
  '(projectile-globally-ignored-directories
    (quote
