@@ -28,6 +28,10 @@
 ;; Общие удобства
 (setq scroll-step 1) ;; Ограничение прокрутки
 (setq scroll-margin 10) ;; сдвигать буфер верх/вниз когда курсор в 10 шагах от верхней/нижней границы
+(setq redisplay-dont-pause t ;; Плавный скроллинг
+  scroll-conservatively 10000
+  scroll-preserve-screen-position 1)
+
 (fset 'yes-or-no-p 'y-or-n-p) ;; Простое потверждение.
 (setq compilation-scroll-output t) ;; прокрутка окна компиляции
 
