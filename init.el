@@ -40,7 +40,7 @@
  '(mouse-wheel-progressive-speed nil)
  '(package-selected-packages
    (quote
-    (counsel-tramp dap-mode ecb ivy-xref popwin amx flx counsel swiper ivy treemacs-icons-dired treemacs-projectile treemacs bison-mode dashboard solarized-theme doom-themes use-package company-lsp cquery lsp-mode clang-format exec-path-from-shell cmake-mode powerline magit markdown-mode company projectile)))
+    (vterm counsel-tramp dap-mode ecb ivy-xref popwin amx flx counsel swiper ivy treemacs-icons-dired treemacs-projectile treemacs bison-mode dashboard solarized-theme doom-themes use-package company-lsp cquery lsp-mode clang-format exec-path-from-shell cmake-mode powerline magit markdown-mode company projectile)))
  '(projectile-enable-caching t)
  '(projectile-globally-ignored-directories
    (quote
