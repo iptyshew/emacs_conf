@@ -138,7 +138,7 @@
     (setq treemacs-collapse-dirs              (if (executable-find "python") 3 0)
           treemacs-deferred-git-apply-delay   0.5
           treemacs-display-in-side-window     t
-          treemacs-file-event-delay           5000
+          treemacs-file-event-delay           5
           treemacs-file-follow-delay          0.2
           treemacs-follow-after-init          t
           treemacs-follow-recenter-distance   0.1
@@ -162,7 +162,7 @@
           treemacs-space-between-root-nodes   t
           treemacs-tag-follow-cleanup         t
           treemacs-tag-follow-delay           1.5
-          treemacs-width                      35)
+          treemacs-width                      45)
 
     ;; The default width and height of the icons is 22 pixels. If you are
     ;; using a Hi-DPI display, uncomment this to double the icon size.
