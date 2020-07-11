@@ -216,15 +216,6 @@
   ("C-x C-m" . amx))
 
 
-;; (use-package popwin
-;;   :ensure t
-;;   :config
-;;   (popwin-mode 1)
-;;   (setq popwin:popup-window-position (quote right))
-;;   (setq popwin:popup-window-width 80))
-;; (global-set-key (kbd "C-z") popwin:keymap)
-
-
 (use-package ivy-xref
   :ensure t
   :config (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
@@ -232,6 +223,15 @@
 (use-package avy
   :ensure t
   :bind (("C-c C-;" . avy-goto-char-2)
-		 ("C-;" . avy-goto-word-1)))
+	 ("C-;" . avy-goto-word-1)))
+
+(require 'vterm)
+(define-key vterm-mode-map (kbd "<f2>") nil)
+(define-key vterm-mode-map (kbd "M-h") nil)
+(define-key vterm-mode-map (kbd "M-l") nil)
+(define-key vterm-mode-map (kbd "M-k") nil)
+(define-key vterm-mode-map (kbd "M-j") nil)
+(define-key vterm-mode-map (kbd "C-h")
+    (lambda () (interactive) (vterm-send-key (kbd "DEL"))))
 
 (provide 'plugins)
