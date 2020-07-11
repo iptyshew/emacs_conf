@@ -24,26 +24,17 @@
       query-replace-highlight t ;; Подсветка замены
       auto-window-vscroll     nil)
 
-
 ;; Общие удобства
-(setq scroll-step 1) ;; Ограничение прокрутки
-(setq scroll-margin 10) ;; сдвигать буфер верх/вниз когда курсор в 10 шагах от верхней/нижней границы
-(setq redisplay-dont-pause t ;; Плавный скроллинг
-  scroll-conservatively 10000
-  scroll-preserve-screen-position 1)
+(setq scroll-step 1 ;; Ограничение прокрутки
+      scroll-margin 10 ;; сдвигать буфер верх/вниз когда курсор в 10 шагах от верхней/нижней границы
+      scroll-conservatively 10000 ;; Плавный скроллинг
+      scroll-preserve-screen-position 1)
+;; smoot scroll
+(setq mouse-wheel-scroll-amount '(3 ((shift) . 1) ((control) . nil)))
+(setq mouse-wheel-progressive-speed nil)
 
 (fset 'yes-or-no-p 'y-or-n-p) ;; Простое потверждение.
 (setq compilation-scroll-output t) ;; прокрутка окна компиляции
-
-(global-unset-key (kbd "M-h"))
-(global-set-key (kbd "M-h")  'windmove-left)
-(global-unset-key (kbd "M-l"))
-(global-set-key (kbd "M-l") 'windmove-right)
-(global-unset-key (kbd "M-k"))
-(global-set-key (kbd "M-k")    'windmove-up)
-(global-unset-key (kbd "M-j"))
-(global-set-key (kbd "M-j")  'windmove-down)
-
 
 (delete-selection-mode t) ;; Автоудаление выделеного.
 
@@ -57,34 +48,14 @@
 ;; Директория для бэкапов.
 (setq backup-directory-alist '(("" . "~/.emacs.d/files-backup")))
 
-
-(setq
- ;; use gdb-many-windows by default
- gdb-many-windows t
- ;; Non-nil means display source file containing the main routine at startup
- gdb-show-main t
- )
+(setq gdb-many-windows t  ;; use gdb-many-windows by default
+      gdb-show-main t)  ;; Non-nil means display source file containing the main routine at startup)
 
 (setq max-lisp-eval-depth 100000)
 (setq max-specpdl-size 100000)
 
-
 ;; Переход по словам целиком
 (global-superword-mode)
-
-
-;; Подтягивание переменных окружения в emacs
-(let ((path (shell-command-to-string ". ~/.zshrc; echo -n $PATH")))
-  (setenv "PATH" path)
-  (setq exec-path
-        (append
-         (split-string-and-unquote path ":")
-         exec-path)))
-
-;; smoot scroll
-(setq mouse-wheel-scroll-amount '(3 ((shift) . 1) ((control) . nil)))
-(setq mouse-wheel-progressive-speed nil)
-
 
 ;; Нормальный выбор окна в gdb-many-windows
 (defadvice gud-display-line (around do-it-better activate)
@@ -134,10 +105,10 @@
 	    (setq gdb-source-window window))))))
 
 
-;; Debug commands
-(defun start-debug-project()
-  (interactive)
-  (funcall-interactively 'gdb (concat "gdb -i=mi --args " projectile-project-run-cmd)))
+;; Debug war with emacs
+;;(defun start-debug-project()
+;;  (interactive)
+;;  (funcall-interactively 'gdb (concat "gdb -i=mi --args " projectile-project-run-cmd)))
 
 ;;(global-set-key (kbd "<f3>") 'start-debug-project)
 ;;(global-set-key (kbd "<f7>") 'gud-step)
@@ -148,6 +119,7 @@
 ;; Удалять лишние пробелы при сохранении
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
+;; Дефолтная русская раскладка при переключениии языка
 (setq default-input-method 'russian-computer)
 
 (define-key isearch-mode-map (kbd "C-h") 'isearch-del-char) ;; Возможность удалять символы в режиме isearch

@@ -15,13 +15,13 @@
   (setq ivy-initial-inputs-alist nil))
 
 (global-set-key (kbd "<f2>") 'counsel-ibuffer) ;; In use-package not work with 2C
-(global-set-key (kbd "<f3>") 'counsel-ibuffer) ;; In use-package not work with 2C
+(global-set-key (kbd "<f3>") 'counsel-ibuffer)
 
 (use-package counsel
   :ensure t
   :bind
   ("C-x C-f" . counsel-find-file)
-  ("C-x g" . counsel-git-grep)
+  ("C-x g"   . counsel-git-grep)
   ("C-x C-g" . counsel-git-grep))
 
 (use-package projectile
@@ -213,7 +213,8 @@
   (setq amx-backend (quote ivy))
   (define-key amx-map (kbd "C-h") nil)
   :bind
-  ("C-x C-m" . amx))
+  ("C-x C-m" . amx)
+  ("C-x m" . amx))
 
 
 (use-package ivy-xref
@@ -223,7 +224,7 @@
 (use-package avy
   :ensure t
   :bind (("C-c C-;" . avy-goto-char-2)
-	 ("C-;" . avy-goto-word-1)))
+         ("C-;"     . avy-goto-word-1)))
 
 (require 'vterm)
 (define-key vterm-mode-map (kbd "<f2>") nil)
