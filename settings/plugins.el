@@ -25,6 +25,7 @@
   ("C-x C-g" . counsel-git-grep))
 
 (use-package projectile
+   :ensure t
    :init
    (setq projectile-enable-caching t)
    (setq projectile-indexing-method 'native)
@@ -47,12 +48,7 @@
   :ensure t
   :hook (after-init-hook global-company-mode)
   :init
-  (eval-after-load 'company
-    '(add-to-list 'company-backends 'company-lsp))
   (setq company-transformers nil)
-  (setq company-lsp-async t)
-  (setq company-lsp-cache-candidates nil)
-  (setq company-lsp-enable-snippet nil)
   (setq company-dabbrev-downcase 0)
   (setq company-idle-delay 0)
   :bind (:map company-active-map
