@@ -72,10 +72,8 @@
 
 (exec-path-from-shell-copy-envs (source-file-and-get-envs "~/.profile"))
 
-
-(setq multi-compile-path (expand-file-name "~/.emacs.d/thirdparty/emacs-multi-compile"))
 (use-package multi-compile
-  :load-path multi-compile-path
+  :load-path (lambda () (concat user-emacs-directory "thirdparty/emacs-multi-compile"))
   :bind (([f5] . multi-compile-run)
          ([f6] . multi-compile-rerun))
   :init
@@ -87,13 +85,15 @@
   (setq multi-compile-completion-system 'ivy))
 
 
-(use-package clang-format
-  :bind(("C-c i" . clang-format-region)
-		("C-c u" . clang-format-buffer)))
+(use-package lsp
+  :init
+  (setq lsp-clients-clangd-executable "clangd-8"
+        lsp-clients-clangd-args (quote ("-background-index" "-j=3"))
+        lsp-enable-indentation nil
+        lsp-enable-snippet nil
+        lsp-enable-symbol-highlighting t
+        lsp-enable-on-type-formatting nil))
 
-
-(setq lsp-enable-snippet nil)
-(setq lsp-enable-on-type-formatting nil)
 (setq gc-cons-threshold 100000000) ;; for lsp mode perfomance
 (setq read-process-output-max (* 1024 1024)) ;; for lsp mode perfomance
 
