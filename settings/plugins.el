@@ -94,6 +94,8 @@
 
 (setq lsp-enable-snippet nil)
 (setq lsp-enable-on-type-formatting nil)
+(setq gc-cons-threshold 100000000) ;; for lsp mode perfomance
+(setq read-process-output-max (* 1024 1024)) ;; for lsp mode perfomance
 
 (add-hook 'c-mode-hook 'lsp)
 (add-hook 'c++-mode-hook 'lsp)
@@ -229,6 +231,6 @@
 (define-key vterm-mode-map (kbd "M-k") nil)
 (define-key vterm-mode-map (kbd "M-j") nil)
 (define-key vterm-mode-map (kbd "C-h")
-    (lambda () (interactive) (vterm-send-key (kbd "DEL"))))
+  (lambda () (interactive) (vterm-send-key (kbd "DEL"))))
 
 (provide 'plugins)
