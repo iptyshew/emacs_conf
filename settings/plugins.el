@@ -85,21 +85,19 @@
   (setq multi-compile-completion-system 'ivy))
 
 
-(use-package lsp
-  :init
-  (setq lsp-clients-clangd-executable "clangd-8"
-        lsp-clients-clangd-args (quote ("-background-index" "-j=3"))
-        lsp-enable-indentation nil
-        lsp-enable-snippet nil
-        lsp-enable-symbol-highlighting t
-        lsp-enable-on-type-formatting nil))
-
-(setq gc-cons-threshold 100000000) ;; for lsp mode perfomance
-(setq read-process-output-max (* 1024 1024)) ;; for lsp mode perfomance
-
-(add-hook 'c-mode-hook 'lsp)
-(add-hook 'c++-mode-hook 'lsp)
-(add-hook 'python-mode-hook 'lsp)
+(use-package lsp-mode
+  :init (setq lsp-clients-clangd-executable "clangd-8"
+              lsp-clients-clangd-args (quote ("-background-index" "-j=3"))
+              lsp-enable-indentation nil
+              lsp-enable-snippet nil
+              lsp-enable-symbol-highlighting t
+              lsp-enable-on-type-formatting nil)
+  :config (setq gc-cons-threshold 100000000 ;; perfomance
+                read-process-output-max (* 1024 1024)) ;; perfomance
+  :hook (c-mode . lsp)
+        (c++-mode . lsp)
+        (python-mode . lsp)
+  :commands lsp)
 
 (global-unset-key (kbd "C-."))
 (global-set-key (kbd "C-.") 'xref-find-definitions)

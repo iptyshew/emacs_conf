@@ -27,7 +27,6 @@
 
 ;; compilation
 (global-set-key (kbd "C-<f5>") 'kill-compilation)
-(global-set-key (kbd "<f6>") 'recompile)
 
 ;; Прыгаем по окнам, аки воробей
 (global-set-key (kbd "C-x C-o") 'other-window)
