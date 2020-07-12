@@ -9,10 +9,10 @@
   :ensure t
   :after (swiper)
   :config
-  (setq ivy-use-virtual-buffers t)
-  (setq ivy-count-format "(%d/%d) ")
-  (setq ivy-subdir t)
-  (setq ivy-initial-inputs-alist nil))
+  (setq ivy-use-virtual-buffers t
+        ivy-count-format "(%d/%d) "
+        ivy-subdir t
+        ivy-initial-inputs-alist nil))
 
 (global-set-key (kbd "<f2>") 'counsel-ibuffer) ;; In use-package not work with 2C
 (global-set-key (kbd "<f3>") 'counsel-ibuffer)
@@ -27,16 +27,13 @@
 (use-package projectile
    :ensure t
    :init
-   (setq projectile-enable-caching t)
-   (setq projectile-indexing-method 'native)
-   (setq projectile-completion-system 'ivy)
+   (setq projectile-enable-caching t
+         projectile-indexing-method 'native
+         projectile-completion-system 'ivy)
    :bind
    ("C-x p p" . projectile-switch-project)
-   ("C-x C-p p" . projectile-switch-project)
    ("C-x p f" . projectile-find-file)
-   ("C-x C-p f" . projectile-find-file)
-   ("C-x p g" . projectile-grep)
-   ("C-x C-p g" . projectile-grep))
+   ("C-x p g" . projectile-grep))
 
 
 (use-package magit
@@ -46,11 +43,11 @@
 
 (use-package company
   :ensure t
-  :hook (after-init-hook global-company-mode)
   :init
-  (setq company-transformers nil)
-  (setq company-dabbrev-downcase 0)
-  (setq company-idle-delay 0)
+  (setq company-transformers nil
+        company-dabbrev-downcase 0
+        company-idle-delay 0)
+  :hook (after-init . global-company-mode)
   :bind (:map company-active-map
               ("M-n" . nil)
               ("M-p" . nil)
