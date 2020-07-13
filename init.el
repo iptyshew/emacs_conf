@@ -56,8 +56,7 @@
 (put 'narrow-to-page 'disabled nil)
 (put 'set-goal-column 'disabled nil)
 
-
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes") ;; Загружаем каталог с темами оформления
+;;(add-to-list 'custom-theme-load-path "~/.emacs.d/themes") ;; Загружаем каталог с темами оформления
 
 (setq-default cursor-type 'bar) ;; Тонкий курсор
 (set-cursor-color "#f9e796") ;; Цвет курсора
