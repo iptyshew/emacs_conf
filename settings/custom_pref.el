@@ -34,11 +34,6 @@
 
 (electric-pair-mode t) ;; Автозакрытие скобок
 
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa-stable" . "https://stable.melpa.org/packages/"))
-(package-initialize)
-
 ;; Директория для бэкапов.
 (setq backup-directory-alist '(("" . "~/.emacs.d/files-backup")))
 
