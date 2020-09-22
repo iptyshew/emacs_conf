@@ -32,7 +32,10 @@
          projectile-completion-system 'ivy)
    :bind
    ("C-x p p" . projectile-switch-project)
+   ("C-x C-p p" . projectile-switch-project)
    ("C-x p f" . projectile-find-file)
+   ("C-x C-p f" . projectile-find-file)
+   ("C-x C-p g" . projectile-grep)
    ("C-x p g" . projectile-grep))
 
 
