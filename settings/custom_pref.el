@@ -64,4 +64,6 @@ Repeated invocations toggle between the two most recently open buffers."
 (global-set-key (kbd "C-c b") #'switch-to-previous-buffer)
 (global-set-key (kbd "C-c C-b") #'switch-to-previous-buffer)
 
+(setq mac-pass-command-to-system nil)
+
 (provide 'custom_pref)
