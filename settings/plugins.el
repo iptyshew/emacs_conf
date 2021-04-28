@@ -219,4 +219,11 @@
 (define-key vterm-mode-map (kbd "C-h")
   (lambda () (interactive) (vterm-send-key (kbd "DEL"))))
 
+(use-package base16-theme
+  :ensure t
+  :config
+  (load-theme 'base16-apprentice t))
+;;(load-theme 'base16-atelier-plateau-light t)
+;;(load-theme 'base16-cupertino t)
+
 (provide 'plugins)
