@@ -59,18 +59,6 @@
               ("C-p" . #'company-select-previous)))
 
 
-;; Mac os only. Подхватывание переменных окружения
-(when (memq window-system '(mac ns x))
-  (exec-path-from-shell-initialize))
-
-(defun source-file-and-get-envs (filename)
-  (let* ((cmd (concat ". " filename "; env"))
-         (env-str (shell-command-to-string cmd))
-         (env-lines (split-string env-str "\n"))
-         (envs (mapcar (lambda (s) (replace-regexp-in-string "=.*$" "" s)) env-lines)))
-    (delete "" envs)))
-
-(exec-path-from-shell-copy-envs (source-file-and-get-envs "~/.profile"))
 
 (use-package multi-compile
   :load-path (lambda () (concat user-emacs-directory "thirdparty/emacs-multi-compile"))
