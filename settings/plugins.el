@@ -28,7 +28,7 @@
    :ensure t
    :init
    (setq projectile-enable-caching t
-         projectile-indexing-method 'native
+         projectile-indexing-method 'hybrid
          projectile-completion-system 'ivy)
    :bind
    ("C-x p p" . projectile-switch-project)
