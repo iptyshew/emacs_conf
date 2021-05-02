@@ -106,7 +106,19 @@
                           (projects . 5)
                           (agenda . 5)))
   (setq dashboard-set-heading-icons t)
-  (setq dashboard-set-file-icons t))
+  (setq dashboard-set-file-icons t)
+  (setq dashboard-set-navigator t)
+  (setq dashboard-navigator-buttons
+	`(;; line1
+          ((,(all-the-icons-alltheicon "cplusplus-line" :height 1.1 :v-adjust 0.0)
+            "cppreference"
+            "Browse cpp"
+            (lambda (&rest _) (browse-url "https://en.cppreference.com/w/"))))
+          ;; line 2
+          ((,(all-the-icons-octicon "mark-github" :height 1.1 :v-adjust 0.0)
+            "Github"
+            "Homepage"
+            (lambda (&rest _) (browse-url "https://github.com/iptyshew")))))))
 
 (use-package bison-mode
   :ensure t
