@@ -35,8 +35,8 @@
    ("C-x C-p p" . projectile-switch-project)
    ("C-x p f" . projectile-find-file)
    ("C-x C-p f" . projectile-find-file)
-   ("C-x C-p g" . projectile-grep)
-   ("C-x p g" . projectile-grep))
+   ("C-x C-p g" . projectile-ripgrep)
+   ("C-x p g" . projectile-ripgrep))
 
 
 (use-package magit
@@ -104,7 +104,9 @@
   (dashboard-setup-startup-hook)
   (setq dashboard-items '((recents  . 5)
                           (projects . 5)
-                          (agenda . 5))))
+                          (agenda . 5)))
+  (setq dashboard-set-heading-icons t)
+  (setq dashboard-set-file-icons t))
 
 (use-package bison-mode
   :ensure t
@@ -225,5 +227,8 @@
   (load-theme 'base16-apprentice t))
 ;;(load-theme 'base16-atelier-plateau-light t)
 ;;(load-theme 'base16-cupertino t)
+
+(use-package all-the-icons
+  :ensure t)
 
 (provide 'plugins)
