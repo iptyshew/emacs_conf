@@ -74,8 +74,8 @@
 
 
 (use-package lsp-mode
-  :init (setq lsp-clients-clangd-executable "clangd-8"
-              lsp-clients-clangd-args (quote ("-background-index" "-j=3"))
+  :init (setq lsp-clients-clangd-executable "/usr/local/Cellar/llvm/11.1.0/bin/clangd"
+              lsp-clients-clangd-args (quote ("-background-index" "-j=8"))
               lsp-enable-indentation nil
               lsp-enable-snippet nil
               lsp-enable-symbol-highlighting t

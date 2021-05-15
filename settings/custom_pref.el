@@ -1,6 +1,6 @@
 ;; на маке размер шрифта больше нужен
 (if (eq system-type 'darwin)
-	(set-frame-font "monaco 13")
+	(set-frame-font "monaco 15")
   (set-frame-font "consolas 12"))
 
 (global-linum-mode 1) ;; Включение нумерации
