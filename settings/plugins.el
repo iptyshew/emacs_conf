@@ -89,7 +89,8 @@
 
 (global-unset-key (kbd "C-."))
 (global-set-key (kbd "C-.") 'xref-find-definitions)
-(global-set-key (kbd "M-.") 'lsp-goto-implementation)
+(global-set-key (kbd "C-.") 'xref-find-definitions)
+(global-set-key (kbd "M-.") 'lsp-find-implementation)
 (global-set-key (kbd "M-;") 'xref-find-references)
 (global-set-key (kbd "C-8") 'xref-pop-marker-stack)
 

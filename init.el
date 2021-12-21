@@ -51,7 +51,8 @@
 (put 'narrow-to-page 'disabled nil)
 (put 'set-goal-column 'disabled nil)
 
-(setq-default cursor-type 'bar) ;; Тонкий курсор
+(setq-default cursor-type '(bar . 3))
+
 (set-cursor-color "#f9e796") ;; Цвет курсора
 
 (require 'custom_pref)
