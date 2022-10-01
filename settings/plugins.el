@@ -66,15 +66,18 @@
          ([f6] . multi-compile-rerun))
   :init
   (setq multi-compile-alist '(
-		("\\.*" . (("gen-cmake" "cmake -B build -H. -G \"Ninja\" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=yes -DWITH_TESTS=yes && mv build/compile_commands.json ." (locate-dominating-file buffer-file-name ".projectile"))
-				   ("build" "cmake --build build" (locate-dominating-file buffer-file-name ".projectile"))
-				   ("test" "cmake --build build && (cd build && ctest -I 3 -V)" (locate-dominating-file buffer-file-name ".projectile"))
-                   ("clear" "rm -rf build" (locate-dominating-file buffer-file-name ".projectile"))))))
+			      ("\\.*" . (("gen-cmake" "PKG_CONFIG_PATH=/usr/lib64/pkgconfig:/usr/local/lib/pkgconfig:/usr/lib/pkgconfig cmake -B build -H. -G \"Ninja\" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=yes -DDPDK_KERN_BYPASS=1 -DGATESPATTERN=binance && mv build/compile_commands.json ." (locate-dominating-file buffer-file-name ".projectile"))
+					 ("gen-cmake-all" "PKG_CONFIG_PATH=/usr/lib64/pkgconfig:/usr/local/lib/pkgconfig:/usr/lib/pkgconfig cmake -B build -H. -G \"Ninja\" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=yes -DDPDK_KERN_BYPASS=yes&& mv build/compile_commands.json ." (locate-dominating-file buffer-file-name ".projectile"))
+					 ("build" "cmake --build build" (locate-dominating-file buffer-file-name ".projectile"))
+					 ("build-robot" "ninja -C build mdlog_processor md_gate trade_gate proxy_gate strategy head shm_storage_agent mdlog_server mdlog_storage" (locate-dominating-file buffer-file-name ".projectile"))
+					 ("build-md" "ninja -C build md_gate" (locate-dominating-file buffer-file-name ".projectile"))
+					 ("clear" "rm -rf build" (locate-dominating-file buffer-file-name ".projectile"))))))
   (setq multi-compile-completion-system 'ivy))
 
 
+
 (use-package lsp-mode
-  :init (setq lsp-clients-clangd-executable "clangd-8"
+  :init (setq lsp-clients-clangd-executable "clangd"
               lsp-clients-clangd-args (quote ("-background-index" "-j=3"))
               lsp-enable-indentation nil
               lsp-enable-snippet nil
