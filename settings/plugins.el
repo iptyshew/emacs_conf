@@ -59,26 +59,26 @@
               ("C-p" . #'company-select-previous)))
 
 
-
 (use-package multi-compile
   :load-path (lambda () (concat user-emacs-directory "thirdparty/emacs-multi-compile"))
   :bind (([f5] . multi-compile-run)
          ([f6] . multi-compile-rerun))
   :init
   (setq multi-compile-alist '(
-			      ("\\.*" . (("gen-cmake" "PKG_CONFIG_PATH=/usr/lib64/pkgconfig:/usr/local/lib/pkgconfig:/usr/lib/pkgconfig cmake -B build -H. -G \"Ninja\" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=yes -DDPDK_KERN_BYPASS=1 -DGATESPATTERN=binance && mv build/compile_commands.json ." (locate-dominating-file buffer-file-name ".projectile"))
-					 ("gen-cmake-all" "PKG_CONFIG_PATH=/usr/lib64/pkgconfig:/usr/local/lib/pkgconfig:/usr/lib/pkgconfig cmake -B build -H. -G \"Ninja\" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=yes -DDPDK_KERN_BYPASS=yes&& mv build/compile_commands.json ." (locate-dominating-file buffer-file-name ".projectile"))
-					 ("build" "cmake --build build" (locate-dominating-file buffer-file-name ".projectile"))
-					 ("build-robot" "ninja -C build mdlog_processor md_gate trade_gate proxy_gate strategy head shm_storage_agent mdlog_server mdlog_storage" (locate-dominating-file buffer-file-name ".projectile"))
-					 ("build-md" "ninja -C build md_gate" (locate-dominating-file buffer-file-name ".projectile"))
-					 ("clear" "rm -rf build" (locate-dominating-file buffer-file-name ".projectile"))))))
+		              ("\\.*" .
+                               (("gen-cmake-clang-full" "CXX=clang++ CC=clang cmake -B build -H. -G \"Ninja\" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=yes -DDPDK_KERN_BYPASS=yes && mv build/compile_commands.json ." (locate-dominating-file buffer-file-name ".projectile-full"))
+                                ("gen-cmake" "PKG_CONFIG_PATH=/usr/lib64/pkgconfig:/usr/local/lib/pkgconfig:/usr/lib/pkgconfig cmake -B build -H. -G \"Ninja\" -DCMAKE_BUILD_TYPE=Debug -DGATESPATTERN=binance -DCMAKE_EXPORT_COMPILE_COMMANDS=yes -DDPDK_KERN_BYPASS=yes && mv build/compile_commands.json ." (locate-dominating-file buffer-file-name ".projectile-full"))
+			        ("build" "ninja -C build" (locate-dominating-file buffer-file-name ".projectile-full"))
+			        ("build-md" "ninja -C build md_gate" (locate-dominating-file buffer-file-name ".projectile-full"))
+			        ("build-robot" "ninja -C build -w dupbuild=warn mdlog_processor md_gate trade_gate proxy_gate strategy head shm_storage_agent mdlog_server mdlog_storage" (locate-dominating-file buffer-file-name ".projectile-full"))
+				("test" "ninja -C build master_gtest" (locate-dominating-file buffer-file-name ".projectile"))
+                                ("clear" "rm -rf build" (locate-dominating-file buffer-file-name ".projectile-full"))))))
   (setq multi-compile-completion-system 'ivy))
 
 
 
 (use-package lsp-mode
   :init (setq lsp-clients-clangd-executable "clangd"
-              lsp-clients-clangd-args (quote ("-background-index" "-j=3"))
               lsp-enable-indentation nil
               lsp-enable-snippet nil
               lsp-enable-symbol-highlighting t
@@ -241,10 +241,14 @@
   :ensure t
   :config
   (load-theme 'base16-apprentice t))
+;;  (load-theme 'base16-classic-light t))
 ;;(load-theme 'base16-atelier-plateau-light t)
-;;(load-theme 'base16-cupertino t)
+;;load-theme 'base16-cupertino t)
 
 (use-package all-the-icons
   :ensure t)
+
+(require 'dap-cpptools)
+(dap-auto-configure-mode 1)
 
 (provide 'plugins)

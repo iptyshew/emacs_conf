@@ -1,34 +1,12 @@
 ;; C++
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 8)
+(setq indent-line-function 'insert-tab)
 
-
-(defun llvm-lineup-statement (langelem)
-  (let ((in-assign (c-lineup-assignments langelem)))
-    (if (not in-assign)
-        '++
-      (aset in-assign 0
-            (+ (aref in-assign 0)
-               (* 2 c-basic-offset)))
-      in-assign)))
-
-;; Add a cc-mode style for editing LLVM C and C++ code
-(c-add-style "llvm.org"
-             '("gnu"
-	       (fill-column . 80)
-	       (c++-indent-level . 2)
-	       (c-basic-offset . 2)
-	       (indent-tabs-mode . nil)
-	       (c-offsets-alist . ((arglist-intro . ++)
-				   (innamespace . 0)
-				   (member-init-intro . ++)
-				   (statement-cont . llvm-lineup-statement)))))
-
-(add-hook 'c-mode-common-hook
-	  (function
-	   (lambda nil
-	     (if (string-match "omim" buffer-file-name)
-		 (progn
-		   (c-set-style "llvm.org"))))))
-
+(defun my-c++-mode-hook ()
+  (setq c-basic-offset 4)
+  (c-set-offset 'substatement-open 0))
+(add-hook 'c++-mode-hook 'my-c++-mode-hook)
 
 ;;GYP
 (define-derived-mode gyp-mode python-mode "GYP"
