@@ -111,18 +111,7 @@
                           (agenda . 5)))
   (setq dashboard-set-heading-icons t)
   (setq dashboard-set-file-icons t)
-  (setq dashboard-set-navigator t)
-  (setq dashboard-navigator-buttons
-	`(;; line1
-          ((,(all-the-icons-alltheicon "cplusplus-line" :height 1.1 :v-adjust 0.0)
-            "cppreference"
-            "Browse cpp"
-            (lambda (&rest _) (browse-url "https://en.cppreference.com/w/"))))
-          ;; line 2
-          ((,(all-the-icons-octicon "mark-github" :height 1.1 :v-adjust 0.0)
-            "Github"
-            "Homepage"
-            (lambda (&rest _) (browse-url "https://github.com/iptyshew")))))))
+  (setq dashboard-set-navigator t))
 
 (use-package bison-mode
   :ensure t
@@ -228,22 +217,19 @@
   :bind (("C-c C-;" . avy-goto-char-2)
          ("C-;"     . avy-goto-word-1)))
 
-(require 'vterm)
-(define-key vterm-mode-map (kbd "<f2>") nil)
-(define-key vterm-mode-map (kbd "M-h") nil)
-(define-key vterm-mode-map (kbd "M-l") nil)
-(define-key vterm-mode-map (kbd "M-k") nil)
-(define-key vterm-mode-map (kbd "M-j") nil)
-(define-key vterm-mode-map (kbd "C-h")
-  (lambda () (interactive) (vterm-send-key (kbd "DEL"))))
+;; (require 'vterm)
+;; (define-key vterm-mode-map (kbd "<f2>") nil)
+;; (define-key vterm-mode-map (kbd "M-h") nil)
+;; (define-key vterm-mode-map (kbd "M-l") nil)
+;; (define-key vterm-mode-map (kbd "M-k") nil)
+;; (define-key vterm-mode-map (kbd "M-j") nil)
+;; (define-key vterm-mode-map (kbd "C-h")
+;;   (lambda () (interactive) (vterm-send-key (kbd "DEL"))))
 
 (use-package base16-theme
   :ensure t
   :config
-  (load-theme 'base16-apprentice t))
-;;  (load-theme 'base16-classic-light t))
-;;(load-theme 'base16-atelier-plateau-light t)
-;;load-theme 'base16-cupertino t)
+  (load-theme 'base16-solarized-dark t))
 
 (use-package all-the-icons
   :ensure t)
