@@ -67,36 +67,26 @@
   (setq multi-compile-alist '(
 		              ("\\.*" .
                                (("gen-cmake-clang-full" "CXX=clang++ CC=clang cmake -B build -H. -G \"Ninja\" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=yes -DDPDK_KERN_BYPASS=yes && mv build/compile_commands.json ." (locate-dominating-file buffer-file-name ".projectile-full"))
-                                ("gen-cmake" "PKG_CONFIG_PATH=/usr/lib64/pkgconfig:/usr/local/lib/pkgconfig:/usr/lib/pkgconfig cmake -B build -H. -G \"Ninja\" -DCMAKE_BUILD_TYPE=Debug -DGATESPATTERN=binance -DCMAKE_EXPORT_COMPILE_COMMANDS=yes -DDPDK_KERN_BYPASS=yes && mv build/compile_commands.json ." (locate-dominating-file buffer-file-name ".projectile-full"))
+                                ("gen-cmake" "cmake -B build -H. -G \"Ninja\" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=yes && mv build/compile_commands.json ." (locate-dominating-file buffer-file-name ".projectile"))
+                                ("gen-cmake-okex" "CXX=clang++ CC=clang cmake -B build -H. -G \"Ninja\" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=yes -DGATESPATTERN=Off -DGATE_OKEX_TRADE=On && mv build/compile_commands.json ." (locate-dominating-file buffer-file-name ".projectile"))
 			        ("build" "ninja -C build" (locate-dominating-file buffer-file-name ".projectile-full"))
-			        ("build-md" "ninja -C build md_gate" (locate-dominating-file buffer-file-name ".projectile-full"))
-			        ("build-robot" "ninja -C build -w dupbuild=warn mdlog_processor md_gate trade_gate proxy_gate strategy head shm_storage_agent mdlog_server mdlog_storage" (locate-dominating-file buffer-file-name ".projectile-full"))
+			        ("build-md" "ninja -C build md_gate" (locate-dominating-file buffer-file-name ".projectile"))
+			        ("build-trade" "ninja -C build trade_gate" (locate-dominating-file buffer-file-name ".projectile"))
 				("test" "ninja -C build master_gtest" (locate-dominating-file buffer-file-name ".projectile"))
-                                ("clear" "rm -rf build" (locate-dominating-file buffer-file-name ".projectile-full"))))))
+                                ("clear" "rm -rf build" (locate-dominating-file buffer-file-name ".projectile"))))))
   (setq multi-compile-completion-system 'ivy))
 
+(use-package fancy-compilation
+  :commands (fancy-compilation-mode))
 
-
-(use-package lsp-mode
-  :init (setq lsp-clients-clangd-executable "clangd"
-              lsp-enable-indentation nil
-              lsp-enable-snippet nil
-              lsp-enable-symbol-highlighting t
-              lsp-enable-on-type-formatting nil)
-  :config (setq gc-cons-threshold 100000000 ;; perfomance
-                read-process-output-max (* 1024 1024)) ;; perfomance
-  :hook (c-mode . lsp)
-        (c++-mode . lsp)
-        (python-mode . lsp)
-  :commands lsp)
+(with-eval-after-load 'compile
+  (fancy-compilation-mode))
 
 (global-unset-key (kbd "C-."))
 (global-set-key (kbd "C-.") 'xref-find-definitions)
-(global-set-key (kbd "C-.") 'xref-find-definitions)
-(global-set-key (kbd "M-.") 'lsp-find-implementation)
+(global-set-key (kbd "M-.") 'eglot-find-implementation)
 (global-set-key (kbd "M-;") 'xref-find-references)
 (global-set-key (kbd "C-8") 'xref-pop-marker-stack)
-
 
 (use-package powerline
   :init (powerline-center-theme))
@@ -217,24 +207,39 @@
   :bind (("C-c C-;" . avy-goto-char-2)
          ("C-;"     . avy-goto-word-1)))
 
-;; (require 'vterm)
-;; (define-key vterm-mode-map (kbd "<f2>") nil)
-;; (define-key vterm-mode-map (kbd "M-h") nil)
-;; (define-key vterm-mode-map (kbd "M-l") nil)
-;; (define-key vterm-mode-map (kbd "M-k") nil)
-;; (define-key vterm-mode-map (kbd "M-j") nil)
-;; (define-key vterm-mode-map (kbd "C-h")
-;;   (lambda () (interactive) (vterm-send-key (kbd "DEL"))))
-
 (use-package base16-theme
   :ensure t
   :config
-  (load-theme 'base16-solarized-dark t))
+  (load-theme 'base16-nord t))
 
 (use-package all-the-icons
   :ensure t)
 
-(require 'dap-cpptools)
-(dap-auto-configure-mode 1)
+(with-eval-after-load 'tramp
+  (add-to-list 'tramp-connection-properties
+                  (list "/ssh:" "direct-async-process" t)
+                  (list "/rsync:" "direct-async-process" t))
+  (setq tramp-inline-compress-start-size 1000
+        tramp-copy-size-limit 10000
+        vc-handled-backends '(git)
+        tramp-verbose 1 ; shut the fuck up tramp
+        password-cache-expiry nil ; stop tramp from forgetting passwords
+        ;; force tramp to use the default .ssh config for controlmaster
+        ;; makes things quicker and retains passwords
+        tramp-use-ssh-controlmaster-options t
+        ;; Let tramp re-use the ssh connection
+        ;; The preferred way to do this is to add the following
+        ;; to your ~/.ssh/config:
+        ;;
+        ;; Host *
+        ;;   ControlMaster auto
+        ;;   ControlPath ~/.ssh/master-%r@%h:%p
+        ;;   Compression yes
+        ;;   ControlPersist 15m
+        tramp-ssh-controlmaster-options (concat
+          "-o ControlMaster=auto "
+          "-o ControlPath=~/.ssh/master-%%r@%%h:%%p "
+          "-o ControlPersist=15m ")
+        remote-file-name-inhibit-cache nil)) ; remember more filenames
 
 (provide 'plugins)

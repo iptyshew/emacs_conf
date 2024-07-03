@@ -3,8 +3,6 @@
 	(set-frame-font "monaco 13")
   (set-frame-font "Source code pro 11"))
 
-(global-display-line-numbers-mode 1)
-
 (tool-bar-mode -1) ;; Отлючение тул бара
 (scroll-bar-mode -1) ;; Отлючение скрола
 (menu-bar-mode -1) ;; Отключении меню бара
@@ -68,5 +66,8 @@ Repeated invocations toggle between the two most recently open buffers."
 (global-set-key (kbd "C-c C-b") #'switch-to-previous-buffer)
 
 (setq mac-pass-command-to-system nil)
+
+(setq read-process-output-max (* 1024 1024)) ;; 1mb
+(setq gc-cons-threshold 100000000)
 
 (provide 'custom_pref)
