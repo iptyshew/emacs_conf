@@ -211,7 +211,9 @@
 (use-package base16-theme
   :ensure t
   :config
-  (load-theme 'base16-nord t))
+    (load-theme 'base16-materia t))
+;;    (load-theme 'base16-harmonic16-light t)) ;; nice light theme
+
 
 (use-package all-the-icons
   :ensure t)
