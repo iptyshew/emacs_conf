@@ -1,6 +1,5 @@
-;; на маке размер шрифта больше нужен
 (if (eq system-type 'darwin)
-	(set-frame-font "monaco 13")
+	(set-frame-font "monaco 14")
   (set-frame-font "Source code pro 11"))
 
 (tool-bar-mode -1) ;; Отлючение тул бара
@@ -69,5 +68,18 @@ Repeated invocations toggle between the two most recently open buffers."
 
 (setq read-process-output-max (* 1024 1024)) ;; 1mb
 (setq gc-cons-threshold 100000000)
+
+(setq org-agenda-files '("~/org"))
+(setq org-log-done 'time)
+(setq org-return-follows-link  t)
+(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+(add-hook 'org-mode-hook 'org-indent-mode)
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+(define-key global-map "\C-cc" 'org-capture)
+(setq org-hide-emphasis-markers t)
+(add-hook 'org-mode-hook 'visual-line-mode)
+(setq org-todo-keywords
+'((sequence "TODO" "WAIT" "DONE")))
 
 (provide 'custom_pref)

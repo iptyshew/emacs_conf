@@ -66,12 +66,13 @@
   :init
   (setq multi-compile-alist '(
 		              ("\\.*" .
-                               (("gen-cmake-clang-full" "CXX=clang++ CC=clang cmake -B build -H. -G \"Ninja\" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=yes -DDPDK_KERN_BYPASS=yes && mv build/compile_commands.json ." (locate-dominating-file buffer-file-name ".projectile-full"))
-                                ("gen-cmake" "cmake -B build -H. -G \"Ninja\" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=yes && mv build/compile_commands.json ." (locate-dominating-file buffer-file-name ".projectile"))
-                                ("gen-cmake-okex" "CXX=clang++ CC=clang cmake -B build -H. -G \"Ninja\" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=yes -DGATESPATTERN=Off -DGATE_OKEX_TRADE=On && mv build/compile_commands.json ." (locate-dominating-file buffer-file-name ".projectile"))
+                                (("gen-cmake-gcc" "cmake -B build -H. -G \"Ninja\" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=yes && mv build/compile_commands.json ." (locate-dominating-file buffer-file-name ".projectile"))
+                                ("gen-cmake-clang" "CXX=clang++ CC=clang cmake -B build -H. -G \"Ninja\" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=yes && mv build/compile_commands.json ." (locate-dominating-file buffer-file-name ".projectile"))
 			        ("build" "ninja -C build" (locate-dominating-file buffer-file-name ".projectile-full"))
-			        ("build-md" "ninja -C build md_gate" (locate-dominating-file buffer-file-name ".projectile"))
-			        ("build-trade" "ninja -C build trade_gate" (locate-dominating-file buffer-file-name ".projectile"))
+			        ("build-md" "ninja -C build md_gate" (locate-dominating-file buffer-file-name ".projectile-full"))
+			        ("build-trade" "ninja -C build trade_gate" (locate-dominating-file buffer-file-name ".projectile-full"))
+			        ("build-robot" "ninja -C build -w dupbuild=warn mdlog_processor md_gate trade_gate proxy_gate strategy head shm_storage_agent mdlog_server mdlog_storage" (locate-dominating-file buffer-file-name ".projectile-full"))
+>>>>>>> Stashed changes
 				("test" "ninja -C build master_gtest" (locate-dominating-file buffer-file-name ".projectile"))
                                 ("clear" "rm -rf build" (locate-dominating-file buffer-file-name ".projectile"))))))
   (setq multi-compile-completion-system 'ivy))
