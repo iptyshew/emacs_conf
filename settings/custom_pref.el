@@ -1,6 +1,6 @@
 (if (eq system-type 'darwin)
 	(set-frame-font "monaco 14")
-  (set-frame-font "Source code pro 11"))
+  (set-frame-font "source code pro 10"))
 
 (tool-bar-mode -1) ;; Отлючение тул бара
 (scroll-bar-mode -1) ;; Отлючение скрола
@@ -80,6 +80,9 @@ Repeated invocations toggle between the two most recently open buffers."
 (setq org-hide-emphasis-markers t)
 (add-hook 'org-mode-hook 'visual-line-mode)
 (setq org-todo-keywords
-'((sequence "TODO" "WAIT" "DONE")))
+      '((sequence "TODO" "WAIT" "DONE")))
+
+(with-eval-after-load 'org
+  (define-key org-mode-map (kbd "M-h") 'windmove-left))
 
 (provide 'custom_pref)

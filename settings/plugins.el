@@ -69,10 +69,8 @@
                                 (("gen-cmake-gcc" "cmake -B build -H. -G \"Ninja\" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=yes && mv build/compile_commands.json ." (locate-dominating-file buffer-file-name ".projectile"))
                                 ("gen-cmake-clang" "CXX=clang++ CC=clang cmake -B build -H. -G \"Ninja\" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=yes && mv build/compile_commands.json ." (locate-dominating-file buffer-file-name ".projectile"))
 			        ("build" "ninja -C build" (locate-dominating-file buffer-file-name ".projectile-full"))
-			        ("build-md" "ninja -C build md_gate" (locate-dominating-file buffer-file-name ".projectile-full"))
-			        ("build-trade" "ninja -C build trade_gate" (locate-dominating-file buffer-file-name ".projectile-full"))
-			        ("build-robot" "ninja -C build -w dupbuild=warn mdlog_processor md_gate trade_gate proxy_gate strategy head shm_storage_agent mdlog_server mdlog_storage" (locate-dominating-file buffer-file-name ".projectile-full"))
->>>>>>> Stashed changes
+			        ("build-md" "ninja -C build md_gate" (locate-dominating-file buffer-file-name ".projectile"))
+			        ("build-trade" "ninja -C build trade_gate" (locate-dominating-file buffer-file-name ".projectile"))
 				("test" "ninja -C build master_gtest" (locate-dominating-file buffer-file-name ".projectile"))
                                 ("clear" "rm -rf build" (locate-dominating-file buffer-file-name ".projectile"))))))
   (setq multi-compile-completion-system 'ivy))
@@ -83,11 +81,25 @@
 (with-eval-after-load 'compile
   (fancy-compilation-mode))
 
+(use-package lsp-mode
+  :init (setq lsp-clients-clangd-executable "clangd"
+;;              lsp-clients-clangd-args "--header-insertion-decorators=0 -j 2"
+              lsp-enable-indentation nil
+              lsp-enable-snippet nil
+              lsp-enable-symbol-highlighting t
+              lsp-enable-on-type-formatting nil)
+  :config (setq gc-cons-threshold 100000000 ;; perfomance
+                read-process-output-max (* 1024 1024)) ;; perfomance
+  :hook (c-mode . lsp)
+        (c++-mode . lsp)
+        (python-mode . lsp)
+  :commands lsp)
+
 (global-unset-key (kbd "C-."))
 (global-set-key (kbd "C-.") 'xref-find-definitions)
-(global-set-key (kbd "M-.") 'eglot-find-implementation)
+(global-set-key (kbd "M-.") 'lsp-find-implementation)
 (global-set-key (kbd "M-;") 'xref-find-references)
-(global-set-key (kbd "C-8") 'xref-pop-marker-stack)
+(global-set-key (kbd "M-8") 'xref-pop-marker-stack)
 
 (use-package powerline
   :init (powerline-center-theme))
@@ -211,7 +223,9 @@
 (use-package base16-theme
   :ensure t
   :config
-    (load-theme 'base16-materia t))
+  (load-theme 'base16-solarized-dark t))
+  ;;    (load-theme 'base16-materia t))
+;;    (load-theme 'tango t))
 ;;    (load-theme 'base16-harmonic16-light t)) ;; nice light theme
 
 
