@@ -85,4 +85,13 @@ Repeated invocations toggle between the two most recently open buffers."
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "M-h") 'windmove-left))
 
+(setq org-agenda-window-setup 'current-window) ;; Использовать текущее окно
+
+(advice-add 'org-agenda :around
+            (lambda (orig-fun &rest args)
+              (delete-other-windows)
+              (split-window-horizontally) ;; Создаёт вертикальный сплит
+              (other-window 1)
+              (apply orig-fun args)))
+
 (provide 'custom_pref)
