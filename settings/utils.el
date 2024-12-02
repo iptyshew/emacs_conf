@@ -31,11 +31,11 @@
                    (point)))
       (activate-mark))))
 
-(defun magin-commit-datetime ()
+(defun org-commit-sync ()
   "Create a Magit commit with the current date and time as the commit message."
   (interactive)
   (let ((commit-message (format-time-string "%Y-%m-%d %H:%M:%S")))
-    (magit-stage-modified) ;; Стадируем все изменения
-    (magit-commit-create `("-m" ,commit-message)))) ;; Создаём коммит
+    (magit-stage-modified)
+    (magit-commit-create `("-m" ,commit-message))))
 
 (provide 'utils)
